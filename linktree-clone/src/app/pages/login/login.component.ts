@@ -1,21 +1,27 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
-// userName:new FormControl<string>('')
-// password:new FormControl<string>('')
+userName=new FormControl('');
+password=new FormControl('');
 
+constructor(private router:Router){}
   verificarLogin(userName: string,password: string){
     if(userName == 'mercio' && password== '1234' ){
-      
-    }else{
-      alert('credenciais iválidas!');
-    }
+   this.router.navigate(['/myprofile']);
+  }else{
+    document.addEventListener('DOMContentLoaded',()=>{
+      // document.getElementById('alert').style.display='block';
+    })
+    
   }
+}
 }
