@@ -8,7 +8,7 @@
       <input type="password" class="form-control" placeholder="Password" id="Passwod" [formControl]="password">
       <i class="mdi mdi-lock"></i>
     </div>
-     <span id="alert">Credenciais inválidas</span>
-     <a class="link" href="#">Esqueceu a palavra passe?</a>
-    <button type="button" class="log-btn" ><i class="mdi mdi-account"></i> Log in</button>
+    <a class="link" href="#">Esqueceu a palavra passe?</a>
+    <span *ngIf="spanAlerta" class="alert">Credenciais inválidas</span>
+    <button type="button" class="log-btn" (click)="verificarLogin(userName.value,password.value)"><i class="mdi mdi-account"></i> Log in</button>
   </div>
