@@ -1,0 +1,122 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace crud_tecnicos
+{
+    internal class Program
+    {
+        
+            
+        static void Main(string[] args)
+        {
+
+            Equipamento equip1 = new Equipamento();
+            Equipamento equip2 = new Equipamento();
+            Equipamento equip3 = new Equipamento();
+
+            equip1.nome = "Multímetro";
+            equip1.ano_aquisicao = 2023;
+            equip1.id_equipamento = 1;
+            equip1.id_tecnico = 1;
+
+            equip2.nome = "Alicate";
+            equip2.ano_aquisicao = 2011;
+            equip2.id_equipamento = 1;
+            equip2.id_tecnico = 1;
+
+            equip3.nome = "Berbequim";
+            equip3.ano_aquisicao = 2021;
+            equip3.id_equipamento = 1;
+            equip3.id_tecnico = 1;
+
+            Tecnico tecnico1 = new Tecnico();
+            Tecnico tecnico2 = new Tecnico();
+            Tecnico tecnico3 = new Tecnico();
+            Tecnico tecnico4 = new Tecnico();
+
+            tecnico1.nome = "Mário";
+            tecnico1.idade = 23;
+            tecnico1.especialidade = "Electricista";
+            tecnico1.id_tecnico = 1;
+
+            tecnico2.nome = "Pedro";
+            tecnico2.idade = 31;
+            tecnico2.especialidade = "Mecanico";
+            tecnico2.id_tecnico = 2;
+
+            tecnico3.nome = "Jaime";
+            tecnico3.idade = 40;
+            tecnico3.especialidade = "Electricista";
+            tecnico3.id_tecnico = 3;
+
+            tecnico4.nome = "Tiago";
+            tecnico4.idade = 40;
+            tecnico4.especialidade = "Mecanico";
+            tecnico4.id_tecnico = 4;
+
+            int processo;
+            do
+            {
+                
+            
+            Console.WriteLine("1-Mostrar Equipamento mais antigo");
+            Console.WriteLine("2-Mostrar Lista de técnicos com especialidade de Eletricista");
+            Console.WriteLine("3-Mostrar Lista de Equipamentos adquiridos depois de 2015");
+            Console.WriteLine("4-Imprimir na tela lista de tecnicos responsaveis por cada equipa");
+            Console.WriteLine("0-Encerrar o Programa");
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            
+
+            if (int.TryParse(keyInfo.KeyChar.ToString(), out processo))
+            {
+                
+                    switch (processo)
+                    {
+                        case 1:
+                       
+                            Console.WriteLine($"\nEquipamento mais antigo: {equip1.nome}");
+                            Console.WriteLine("Pessione 'ENTER' para continuar...");
+                            Console.ReadKey();
+                            break;
+                        case 2:
+                            Console.WriteLine($"\nTecnicos Eletricistas: {tecnico1.nome} \n {tecnico3.nome}");
+                            Console.WriteLine("Pessione 'ENTER' para continuar...");
+                            Console.ReadKey();
+                            break;
+                        case 3:
+                            Console.WriteLine($"\nEquipamentos Adquiridos depois de 2015: {equip1.nome}|{equip1.ano_aquisicao}\n {equip3.nome}|{equip3.ano_aquisicao}");
+                            Console.WriteLine("Pessione 'ENTER' para continuar...");
+                            Console.ReadKey();
+                            break;
+                        case 4:
+                            Console.WriteLine($"\nResposáveis de Equipa: {tecnico3.nome}|Responsável pela Equipa de {tecnico3.especialidade}s \n  {tecnico4.nome}|Responsável pela Equipa de {tecnico4.especialidade}s");
+                            Console.WriteLine("Pessione 'ENTER' para continuar...");
+                            Console.ReadKey();
+                            break;
+                        default:
+                            Console.WriteLine("input errado!");
+                            break;
+                    }
+            }
+            } while (processo != 0);
+        }
+        class Equipamento
+        {
+            public string nome;
+            public int id_equipamento;
+            public int ano_aquisicao;
+            public int id_tecnico;
+        }
+        class Tecnico
+        {
+            public int id_tecnico;
+            public string nome;
+            public int idade;
+            public string especialidade;
+        }
+    }
+}
