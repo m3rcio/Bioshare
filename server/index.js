@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 
-app.post("/signup",async (req,res)=>{
+app.post("/api/signup",async (req,res)=>{
     const data={
         nome: req.body.userName,
         password: req.body.password

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-signup',
   imports: [ReactiveFormsModule,NgIf],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+  styleUrl: './signup.component.css',
+  providers: [ ]
 })
 export class SignupComponent {
   userName=new FormControl<string | null>('');
@@ -22,9 +23,9 @@ export class SignupComponent {
     }
     return requestData;
   }
- 
+ http= inject(HttpClient)
   
-constructor( private http: HttpClient){
+constructor(){
 
 }
 
@@ -34,7 +35,7 @@ constructor( private http: HttpClient){
     this.http.post('http://localhost:3000/api/signup', formData)
       .subscribe(res => {
         console.log('Signup successful', res);
-      }, error => {
+      }, (error:any) => {
         console.error('Error during signup', error);
       });
   }
