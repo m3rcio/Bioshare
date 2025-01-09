@@ -18,8 +18,8 @@ export class SignupComponent {
 
   reqData(){
     const requestData={
-      userName:this.userName,
-      password: this.password
+      userName:this.userName.value,
+      password: this.password.value
     }
     return requestData;
   }
@@ -35,8 +35,8 @@ constructor(){
     this.http.post('http://localhost:3000/api/signup', formData)
       .subscribe(res => {
         console.log('Signup successful', res);
-      }, (error:any) => {
-        console.error('Error during signup', error);
+      }, error=> {
+        console.error('Erro durante login', error);
       });
   }
 
