@@ -6,10 +6,11 @@ const cors= require('cors');
 const pasth= require('path');
 const collection = require("./demo_create_mongo_db");
 const bcrypt= require('bcrypt');
+const jwt=require('jsonwebtoken');
+require('dotenv').config();
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-
 app.get('/',()=>{console.log('olá mundo!')});
 app.post("/api/signup",async (req,res)=>{
     try {
@@ -48,6 +49,9 @@ app.post('/api/login', async (req,res)=>{
     }else{
       req.send('palavra-passe errada!');
     }
+
+    const token=jwt.sign({id: user._id},tokenkey);
+    res.json({success:true,token});
   }catch{
     res.send('Credenciais Inválidas')
   }
