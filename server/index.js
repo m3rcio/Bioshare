@@ -1,6 +1,5 @@
 const express= require('express');
 const app= express();
-const mongoose= require('mongoose');
 const port=3000
 const cors= require('cors');
 const pasth= require('path');
@@ -11,7 +10,8 @@ require('dotenv').config();
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-app.get('/',()=>{console.log('olá mundo!')});
+
+
 app.post("/api/signup",async (req,res)=>{
     try {
         const data = {
@@ -22,14 +22,15 @@ app.post("/api/signup",async (req,res)=>{
         const usuarioExistente = await collection.findOne({ nome: data.nome });
     
         if (usuarioExistente) {
-          return res.status(400).send('Este usuário já existe. Por favor escolha outro');
+          return res.status(400).json({message:'Este usuário já existe. Por favor escolha outro'});
         }
-    
-        const userData = await collection.insertMany(data);
-        res.status(201).send('Usuário criado com sucesso!');
+
         const saltRounds= 10;
-        const passwordEncriptada= await bcrypt.hash(data.password, saltRounds);
-        data.password= passwordEncriptada;
+        data.password= await bcrypt.hash(data.password, saltRounds);
+      
+        const userData = await collection.insertMany(data);
+        res.status(201).json({message: 'Usuário criado com sucesso!'});
+  
 
       } catch (error) {
         console.error('Error during signup:', error);
@@ -39,21 +40,26 @@ app.post("/api/signup",async (req,res)=>{
 
 app.post('/api/login', async (req,res)=>{
   try{
-    const nomeInserido= await collection.findOne({name: req.body.userName});
+    const nomeInserido= await collection.findOne({nome: req.body.userName});
     if(!nomeInserido){
-      res.send('usuário não encontrado')
+      return res.status(404).json({ error: 'usuário não encontrado' });
+      
     }
     const passwordMatch= await bcrypt.compare(req.body.password,nomeInserido.password )
     if(passwordMatch){
-      res.render('/myprofile');
+    return  console.log('backend login 200');
     }else{
-      req.send('palavra-passe errada!');
+      console.log(' recebido:', passwordMatch);
+      console.log('Senha recebida:', req.body.password);
+      console.log('Hash armazenado:', nomeInserido.password);
+      return res.status(401).json({ error: 'palavra-passe errada!' });
     }
 
-    const token=jwt.sign({id: user._id},tokenkey);
-    res.json({success:true,token});
-  }catch{
-    res.send('Credenciais Inválidas')
+    // const token=jwt.sign({id: nomeInserido._id},tokenkey);
+    // res.json({success:true,token});
+    res.json({success:true});
+  }catch (error){
+   return res.json({message:'Credenciais Inválidas'});
   }
 })
 

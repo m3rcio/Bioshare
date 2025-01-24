@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../auth.service';
+import { error } from 'node:console';
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule,NgIf ],
@@ -13,8 +14,8 @@ import { AuthService } from '../../../auth.service';
 })
 export class LoginComponent {
 
-userName:string='';
-password:string='';
+userName= new FormControl<string>('');
+password= new FormControl<string>('');
 spanAlerta:boolean=false;
 
  reqData(){
@@ -28,30 +29,29 @@ spanAlerta:boolean=false;
 
 constructor(private router:Router,private authService: AuthService){}
 
-onLogin():void{
-  this.authService.login(this.userName,this.password).subscribe({
-    next: (res)=>{
-      if(res.token){
-        console.log('Login feito com sucesso!');
+onLogin(): void {
+  this.authService.login(this.userName.value, this.password.value).subscribe({
+    next: (response) => {
+      if (response.success) {
         this.router.navigate(['/myprofile']);
       }
     },
-    error:(err)=>{
-      console.error('Erro no Login:', err);
-      alert('credenciais inválidas!');
+    error: (error) => {
+      console.error('Erro durante o login:', error);
+      alert(error.message || 'Falha no login!');
     }
-  })
+  });
 }
 
-onSubmit() {
-  const formData= this.reqData();
-  this.http.post('http://localhost:3000/api/login', formData)
-    .subscribe(res => {
-      console.log('Login successful', res);
-    }, error=> {
-      console.error('Erro durante login', error);
-    });
-}
+// onSubmit() {
+//   const formData= this.reqData();
+//   this.http.post('http://localhost:3000/api/login', formData)
+//     .subscribe(res => {
+//       console.log('Login successful', res);
+//     }, error=> {
+//       console.error('Erro durante login', error);
+//     });
+// }
 
 
 }

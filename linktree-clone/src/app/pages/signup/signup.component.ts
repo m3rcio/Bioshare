@@ -36,7 +36,7 @@ constructor(){
       .subscribe(res => {
         console.log('Signup successful', res);
       }, error=> {
-        console.error('Erro durante login', error);
+        console.error('Erro durante o cadastro', error);
       });
   }
 
