@@ -4,6 +4,7 @@
   } 
     body{
         background-color: #3f94e4;
+        
     }
   h1{
     color:#ccc;
@@ -12,6 +13,7 @@
   }
   
   .login-form{
+    font-family: Arial, Helvetica, sans-serif;
     width:350px;
     padding:40px 30px;
     background:#eee;
@@ -34,7 +36,7 @@
     padding:5px 7px 5px 15px;
     background:#fff;
     color:#666;
-    border:1px solid #ddd;
+    border:2px solid #ddd;
     border-radius: 10px;
   
   }
@@ -44,10 +46,10 @@
     background:#1c3ed4;
     font-size:16px;
     height:40px;
-    width: 100px;
+    width: 130px;
     color:#fff;
     text-decoration:none;
-    border-radius: 30px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
     padding: 5px;
@@ -70,6 +72,14 @@
   
   a{
       text-decoration:none !important;
+  }
+
+  .buttons-div{
+    position: relative;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
   }
   
   
