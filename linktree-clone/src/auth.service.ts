@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -19,19 +19,20 @@ private apiUrl='http://localhost:3000/api';
    login(userName: any, password: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { userName, password }).pipe(
       map((response: any) => {
-        if (response.success) {
-          return alert('success!');
-        } else {
-          throw new Error(response.error || 'Falha de autenticação');
+        console.log('Resposta do servidor:', response); 
+        return response; 
+      }), 
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'Erro desconhecido';
+        if (error.status === 404) {
+          errorMessage = 'Usuário não encontrado!';
+        } else if (error.status === 401) {
+          errorMessage = 'Senha incorreta!';
+        } else if (error.status === 500) {
+          errorMessage = 'Erro no servidor!';
         }
-      }),
-      catchError((error) => {
-        if (error instanceof SyntaxError) {
-          console.error('Response is not valid JSON:', error.message);
-        } else {
-          console.error('Erro de login:', error);
-        }
-        return throwError(() => error);
+        console.error('Erro no login:', errorMessage);
+        return throwError(() => new Error(errorMessage));
       })
     );
   }

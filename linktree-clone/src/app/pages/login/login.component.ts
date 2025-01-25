@@ -31,27 +31,13 @@ constructor(private router:Router,private authService: AuthService){}
 
 onLogin(): void {
   this.authService.login(this.userName.value, this.password.value).subscribe({
-    next: (response) => {
-      if (response.success) {
-        this.router.navigate(['/myprofile']);
-      }
+    next: () => {
+      this.router.navigate(['/myprofile']);
     },
-    error: (error) => {
-      console.error('Erro durante o login:', error);
-      alert(error.message || 'Falha no login!');
+    error: (error: Error) => {
+      alert(error.message);
     }
   });
 }
-
-// onSubmit() {
-//   const formData= this.reqData();
-//   this.http.post('http://localhost:3000/api/login', formData)
-//     .subscribe(res => {
-//       console.log('Login successful', res);
-//     }, error=> {
-//       console.error('Erro durante login', error);
-//     });
-// }
-
 
 }

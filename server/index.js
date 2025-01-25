@@ -47,11 +47,12 @@ app.post('/api/login', async (req,res)=>{
     }
     const passwordMatch= await bcrypt.compare(req.body.password,nomeInserido.password )
     if(passwordMatch){
+    return res.json({ success: true });
     return  console.log('backend login 200');
     }else{
-      console.log(' recebido:', passwordMatch);
-      console.log('Senha recebida:', req.body.password);
-      console.log('Hash armazenado:', nomeInserido.password);
+      // console.log(' recebido:', passwordMatch);
+      // console.log('Senha recebida:', req.body.password);
+      // console.log('Hash armazenado:', nomeInserido.password);
       return res.status(401).json({ error: 'palavra-passe errada!' });
     }
 
