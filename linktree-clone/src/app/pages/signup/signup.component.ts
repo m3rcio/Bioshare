@@ -1,7 +1,7 @@
 import { Component,inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router,RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 @Component({
@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   imports: [ReactiveFormsModule,NgIf],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
-  providers: [ ]
+  providers: [RouterLink ]
 })
 export class SignupComponent {
   userName=new FormControl<string | null>('');
@@ -24,7 +24,7 @@ export class SignupComponent {
     return requestData;
   }
  http= inject(HttpClient)
-  
+ router=inject(Router)
 constructor(){
 
 }
@@ -35,9 +35,14 @@ constructor(){
     this.http.post('http://localhost:3000/api/signup', formData)
       .subscribe(res => {
         console.log('Signup successful', res);
+        this.router.navigate(['/myprofile']);
       }, error=> {
         console.error('Erro durante o cadastro', error);
       });
+  }
+
+  goToLoginPage(){
+    this.router.navigate(['/login'])
   }
 
 }

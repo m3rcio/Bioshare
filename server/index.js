@@ -10,7 +10,7 @@ require('dotenv').config();
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-
+const tokenkey= require('./.env');
 
 app.post("/api/signup",async (req,res)=>{
     try {
@@ -47,18 +47,13 @@ app.post('/api/login', async (req,res)=>{
     }
     const passwordMatch= await bcrypt.compare(req.body.password,nomeInserido.password )
     if(passwordMatch){
+    const token=jwt.sign({id: user._id},tokenkey);
     return res.json({ success: true });
-    return  console.log('backend login 200');
     }else{
-      // console.log(' recebido:', passwordMatch);
-      // console.log('Senha recebida:', req.body.password);
-      // console.log('Hash armazenado:', nomeInserido.password);
       return res.status(401).json({ error: 'palavra-passe errada!' });
     }
 
-    // const token=jwt.sign({id: nomeInserido._id},tokenkey);
     // res.json({success:true,token});
-    res.json({success:true});
   }catch (error){
    return res.json({message:'Credenciais Inválidas'});
   }

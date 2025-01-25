@@ -12,6 +12,8 @@
           <a class="link" href="#">Esqueceu a palavra passe?</a>
           <span *ngIf="spanAlerta" class="alert">Credenciais inválidas</span>
           <button type="button" class="log-btn" (click)="onSubmit()"><i class="mdi mdi-account"></i> Cadastre-se</button>
+          <button class="log-btn" (click)="goToLoginPage()">Fazer Login</button>
+         
     </form>
   </div>
 
