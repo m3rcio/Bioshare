@@ -15,6 +15,7 @@ export class SignupComponent {
   userName=new FormControl<string | null>('');
   password=new FormControl('');
   spanAlerta:boolean=false;
+  spanText='';
 
   reqData(){
     const requestData={
@@ -29,17 +30,28 @@ constructor(){
 
 }
 
+onSubmit() {
+  const formData= this.reqData();
+  this.http.post('http://localhost:3000/api/signup', formData)
+    .subscribe(res => {
+      console.log('Signup successful', res);
+      this.router.navigate(['/myprofile']);
+    }, error=> {
+      console.error('Erro durante o cadastro', error);
+    });
+}
 
-  onSubmit() {
-    const formData= this.reqData();
-    this.http.post('http://localhost:3000/api/signup', formData)
-      .subscribe(res => {
-        console.log('Signup successful', res);
-        this.router.navigate(['/myprofile']);
-      }, error=> {
-        console.error('Erro durante o cadastro', error);
-      });
+cadastrar(){
+  if(!this.userName.value || !this.password.value){
+    this.spanText='Preencha todos os campos antes de enviar'
+    this.spanAlerta=true
+  }else{
+    this.spanAlerta=false
+    this.onSubmit();
   }
+}
+
+
 
   goToLoginPage(){
     this.router.navigate(['/login'])

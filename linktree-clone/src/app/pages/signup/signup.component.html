@@ -10,9 +10,9 @@
             <i class="mdi mdi-lock"></i>
           </div>
           <a class="link" href="#">Esqueceu a palavra passe?</a>
-          <span *ngIf="spanAlerta" class="alert">Credenciais inválidas</span>
+          <span *ngIf="spanAlerta" class="alert">{{spanText}}</span>
           <div class="mt-2 buttons-div">
-            <button type="button" class="log-btn" (click)="onSubmit()"><i class="mdi mdi-account"></i> Cadastre-se</button>
+            <button type="button" class="log-btn" (click)="cadastrar()"><i class="mdi mdi-account"></i> Cadastre-se</button>
             <button class="log-btn ms-3" (click)="goToLoginPage()">Fazer Login</button>
           </div>
          
