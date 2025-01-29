@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SignupComponent {
   userName=new FormControl<string | null>('');
+  email=new FormControl<string | null>('');
   password=new FormControl('');
   spanAlerta:boolean=false;
   spanText='';
@@ -20,7 +21,8 @@ export class SignupComponent {
   reqData(){
     const requestData={
       userName:this.userName.value,
-      password: this.password.value
+      password: this.password.value,
+      email:this.email.value
     }
     return requestData;
   }
@@ -42,7 +44,7 @@ onSubmit() {
 }
 
 cadastrar(){
-  if(!this.userName.value || !this.password.value){
+  if(!this.userName.value || !this.password.value || !this.email.value){
     this.spanText='Preencha todos os campos antes de enviar'
     this.spanAlerta=true
   }else{

@@ -16,13 +16,14 @@ app.post("/api/signup",async (req,res)=>{
     try {
         const data = {
           nome: req.body.userName,
-          password: req.body.password
+          password: req.body.password,
+          email: req.body.email
         };
     
         const usuarioExistente = await collection.findOne({ nome: data.nome });
     
         if (usuarioExistente) {
-          return res.status(400).json({message:'Este usuário já existe. Por favor escolha outro'});
+          return res.status(400).json({message:'Este username já existe. Por favor escolha outro'});
         }
 
         const saltRounds= 10;

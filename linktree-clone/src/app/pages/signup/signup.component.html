@@ -2,12 +2,16 @@
     <h1>SignUp</h1>
     <form action="/signup" method="post">
         <div class="form-group ">
+          <i class="mdi mdi-account"></i>
             <input type="text" class="form-control" placeholder="Username " id="UserName" name="userName" [formControl]="userName">
-            <i class="mdi mdi-account"></i>
           </div>
+          <div class="form-group ">
+            <i class="mdi mdi-account"></i>
+              <input type="email" class="form-control" placeholder="example@gmail.com" id="email" name="email" [formControl]="email">
+            </div>
           <div class="form-group log-status">
-            <input type="password" class="form-control" placeholder="Password" id="Passwod" name="password" [formControl]="password">
             <i class="mdi mdi-lock"></i>
+            <input type="password" class="form-control" placeholder="Password" id="Passwod" name="password" [formControl]="password">
           </div>
           <a class="link" href="#">Esqueceu a palavra passe?</a>
           <span *ngIf="spanAlerta" class="alert">{{spanText}}</span>
