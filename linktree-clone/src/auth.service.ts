@@ -41,9 +41,9 @@ private apiUrl='http://localhost:3000/api';
     localStorage.removeItem(this.tokenkey)
   }
 
-  // isLoggedIn():boolean{
-  //   return !!localStorage.getItem(this.tokenkey);
-  // }
+  isLoggedIn():boolean{
+    return !!localStorage.getItem(this.tokenkey);
+  }
 
   getToken():string | null {
     return localStorage.getItem(this.tokenkey);

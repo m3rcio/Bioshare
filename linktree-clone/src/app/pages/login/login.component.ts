@@ -6,6 +6,7 @@ import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../auth.service';
 import { error } from 'node:console';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule,NgIf ],
@@ -17,6 +18,7 @@ export class LoginComponent {
 userName= new FormControl<string>('');
 password= new FormControl<string>('');
 spanAlerta:boolean=false;
+tokenkey='';
 
  reqData(){
     const requestData={
@@ -27,7 +29,9 @@ spanAlerta:boolean=false;
   }
  http= inject(HttpClient)
 
-constructor(private router:Router,private authService: AuthService){}
+constructor(private router:Router,private authService: AuthService){
+    this.tokenkey=environment.tokenkey;
+}
 
 onLogin(): void {
   this.authService.login(this.userName.value, this.password.value).subscribe({
