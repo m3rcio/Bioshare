@@ -11,12 +11,6 @@ body {
     background-color: #e3e9f7;
 }
 
-main {
-    padding: 20px;
-    position: fixed;
-    z-index: 1;
-    padding-left: calc(82px + 20px);
-}
 
 #sidebar {
     display: flex;
@@ -27,7 +21,7 @@ main {
     border-radius: 0px 18px 18px 0px;
     position: absolute;
     transition: all .5s;
-    width: 30vw;
+    width: 82px;
     z-index: 2;
 }
 

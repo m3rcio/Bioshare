@@ -7,7 +7,7 @@ import { Component, computed, input } from '@angular/core';
 import { RouterOutlet,RouterLink } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
-  imports: [ReactiveFormsModule,RouterOutlet,CommonModule,RouterLink ],
+  imports: [ReactiveFormsModule,CommonModule,RouterLink ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
