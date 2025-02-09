@@ -4,11 +4,13 @@
   } 
     body{
         background-color: #3f94e4;
+        font-family: sans-serif;
     }
   h1{
     color:#ccc;
     text-align:center;
     font-size: 50px;
+    font-family: sans-serif;
   }
   
   .login-form{
