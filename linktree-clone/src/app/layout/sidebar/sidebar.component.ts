@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, EventEmitter, input, Output, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +8,14 @@ import { RouterModule } from '@angular/router';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+  isOpen = false;
 
+  @Output() toggleSidebar = new EventEmitter<boolean>();
+
+  toggle() {
+    this.isOpen = !this.isOpen;
+    this.toggleSidebar.emit(this.isOpen);
+  }
 
 
 }

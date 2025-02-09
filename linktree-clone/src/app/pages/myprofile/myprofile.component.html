@@ -1,2 +1,5 @@
-<app-sidebar/> 
-<app-dashboard/> 
+<div class="container">
+    <app-sidebar (toggleSidebar)="toggleSidebar($event)"></app-sidebar>
+    <app-dashboard [sidebarOpen]="isSidebarOpen"></app-dashboard>
+  </div>
+  

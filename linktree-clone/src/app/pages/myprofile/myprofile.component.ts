@@ -9,5 +9,9 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
   styleUrl: './myprofile.component.css'
 })
 export class MyprofileComponent {
-
+  isSidebarOpen = false;
+  
+  toggleSidebar(isOpen: boolean) {
+    this.isSidebarOpen = isOpen;
+  }
 }

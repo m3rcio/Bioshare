@@ -12,7 +12,7 @@ body {
 }
 
 
-#sidebar {
+/* #sidebar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,7 +23,23 @@ body {
     transition: all .5s;
     width: 82px;
     z-index: 2;
-}
+} */
+
+.sidebar {
+    width: 60px;
+    transition: width 0.3s ease;
+    background-color: #b6b6b6;
+    border-radius: 0px 18px 18px 0px;
+    color: rgb(0, 0, 0);
+    height: 100vh;
+    padding: 10px;
+    position: fixed;
+  }
+  
+  .sidebar.open {
+    width: 250px;
+  }
+  
 
 #sidebar_content {
     padding: 12px;
@@ -145,16 +161,16 @@ body {
     height: 0px;
 }
 
-#sidebar.open-sidebar {
+/* #sidebar.open-sidebar {
     min-width: 15%;
-}
+} */
 
 #sidebar.open-sidebar .item-description {
     width: 150px;
     height: auto;
-}
+} 
 
 #sidebar.open-sidebar .side-item a {
     justify-content: flex-start;
     gap: 14px;
-}
+} 

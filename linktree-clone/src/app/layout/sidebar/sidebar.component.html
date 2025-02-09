@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<nav id="sidebar">
+<nav id="sidebar" class="sidebar" [class.open]="isOpen">
     <div id="sidebar_content">
         <div id="user">
 
@@ -69,7 +69,7 @@
             </li>
         </ul>
 
-        <button id="open_btn">
+        <button id="open_btn" (click)="toggle()">
             <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
         </button>
     </div>
