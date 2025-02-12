@@ -48,7 +48,8 @@ app.post('/api/login', async (req,res)=>{
     }
     const passwordMatch= await bcrypt.compare(req.body.password,nomeInserido.password )
     if(passwordMatch){
-    // const token=jwt.sign({id: user._id},tokenkey);
+    const token=jwt.sign({id: user._id},tokenkey,{ expiresIn: '1m' });
+    res.send({token})
     return res.json({ success: true });
     }else{
       return res.status(401).json({ error: 'palavra-passe errada!' });
@@ -59,5 +60,20 @@ app.post('/api/login', async (req,res)=>{
    return res.json({message:'Credenciais Inválidas'});
   }
 })
+
+const auth=(req,res,next)=>{
+  const token = req.header('Authorization').replace('Bearer ', '');
+  try{
+    const decoded= jwt.verify(token,tokenkey);
+    req.user=decoded; // verify later for issues
+    next();
+  } catch (error) {
+    res.status(401).send({ message: 'Não autorizado' });
+  }
+}
+
+app.get('/protected',auth,(req,res)=>{
+  res.send({message:'Esta Rota está protegida',user:req.user});
+});
 
 app.listen(port, ()=>console.log('server started at '+port))
