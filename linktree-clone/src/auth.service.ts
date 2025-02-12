@@ -10,16 +10,20 @@ import { OnInit } from '@angular/core';
 })
 export class AuthService {
 
+  
 private apiUrl='http://localhost:3000/api';
- private tokenkey=''
- private token:string='';
+ private token=<string | null>('');
 
    http= inject(HttpClient)
    router=inject(Router);
   constructor() {
-    this.tokenkey=environment.tokenkey;
    }
 
+  //  ngOnInit(): void{
+  //   if (typeof window !== 'undefined') {
+  //     this.token = localStorage.getItem('token');
+  //   }
+  //  }
 
 
 
@@ -42,8 +46,9 @@ private apiUrl='http://localhost:3000/api';
     ).subscribe(
       (response) => {
         this.token = response.token;
-        localStorage.setItem('token', this.token);
+        localStorage.setItem('token', this.token ?? '');
         this.router.navigate(['/myprofile']);
+        console.log(this.token);
       },
       (error) => {
         console.error('Login failed:', error);
@@ -62,6 +67,11 @@ private apiUrl='http://localhost:3000/api';
   }
 
   getToken():string | null {
-    return this.token || localStorage.getItem('token');
+    if (typeof window !== 'undefined') {
+      return this.token || localStorage.getItem('token');
+    }else{
+
+      return null;
+    }
   }
 }
