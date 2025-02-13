@@ -48,8 +48,8 @@ app.post('/api/login', async (req,res)=>{
     }
     const passwordMatch= await bcrypt.compare(req.body.password,nomeInserido.password )
     if(passwordMatch){
-    const token=jwt.sign({id: user._id},tokenkey,{ expiresIn: '1m' });
-    res.send({token})
+    const token=jwt.sign({id: user._id},tokenkey,{ algorithm: 'RS256',expiresIn: '1m' });
+    res.status(200).json({idToken:token,expiresIn: '1m'})
     return res.json({ success: true });
     }else{
       return res.status(401).json({ error: 'palavra-passe errada!' });

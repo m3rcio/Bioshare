@@ -12,7 +12,7 @@ import { AuthService } from '../../../auth.service';
 export class MyprofileComponent implements OnInit{
 
   ngOnInit(): void {
-    this.showToken();
+  
   }
 
   isSidebarOpen = false;
@@ -20,7 +20,5 @@ export class MyprofileComponent implements OnInit{
   toggleSidebar(isOpen: boolean) {
     this.isSidebarOpen = isOpen;
   }
-showToken(){
-  return localStorage.getItem('token'); 
-}
+
 }

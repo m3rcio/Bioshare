@@ -5,10 +5,11 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from './environments/environment';
 import { OnInit } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnInit{
 
   
 private apiUrl='http://localhost:3000/api';
@@ -18,14 +19,9 @@ private apiUrl='http://localhost:3000/api';
    router=inject(Router);
   constructor() {
    }
-
-  //  ngOnInit(): void{
-  //   if (typeof window !== 'undefined') {
-  //     this.token = localStorage.getItem('token');
-  //   }
-  //  }
-
-
+   ngOnInit() {
+    this.checkTokenExpiration();
+  }
 
   login(userName: any, password: any) {
     return this.http.post<{ token: any }>(`${this.apiUrl}/login`, { userName, password }).pipe(
@@ -54,6 +50,28 @@ private apiUrl='http://localhost:3000/api';
         console.error('Login failed:', error);
       }
     );
+  }
+
+  checkTokenExpiration() {
+    const token = this.getToken();
+    if (!token) return;
+  
+    try {
+      const decoded: any = jwtDecode(token);
+      const expirationTime = decoded.exp * 1000;
+      const currentTime = Date.now();
+  
+      if (expirationTime > currentTime) {
+        setTimeout(() => {
+          this.logout();
+        }, expirationTime - currentTime);
+      } else {
+        this.logout();
+      }
+    } catch (error) {
+      console.error('Erro ao verificar expiração do token:', error);
+      this.logout();
+    }
   }
 
   logout(){
