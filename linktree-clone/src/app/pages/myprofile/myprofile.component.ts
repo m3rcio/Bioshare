@@ -14,11 +14,13 @@ export class MyprofileComponent implements OnInit{
   ngOnInit(): void {
   
   }
-
+  authService=inject(AuthService);
   isSidebarOpen = false;
   
   toggleSidebar(isOpen: boolean) {
     this.isSidebarOpen = isOpen;
   }
-
+  sair(){
+    this.authService.logout();
+  }
 }

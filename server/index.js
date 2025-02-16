@@ -57,7 +57,6 @@ app.post('/api/login', async (req,res)=>{
       return res.status(401).json({ error: 'palavra-passe errada!' });
     }
 
-    // res.json({success:true,token});
   }catch (error){
    return res.status(400).json({message:'credenciais inválidas!'})
   }

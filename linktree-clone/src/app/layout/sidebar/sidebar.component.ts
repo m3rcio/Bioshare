@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, input, Output, output } from '@angular/core';
+import { Component, EventEmitter, inject, input, Output, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../auth.service';
 @Component({
@@ -17,6 +17,8 @@ export class SidebarComponent {
     this.isOpen = !this.isOpen;
     this.toggleSidebar.emit(this.isOpen);
   }
-
+sair(){
+  this.authService.logout();
+}
 
 }
