@@ -13,11 +13,9 @@ export class AuthService implements OnInit{
 
   private isBrowser!: boolean;
 private apiUrl='http://localhost:3000/api';
- private token=<string>('');
-
+  timeoutId:any=null;
    http= inject(HttpClient)
    router=inject(Router);
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   tokenkey:string='auth-token';
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -78,12 +76,12 @@ private apiUrl='http://localhost:3000/api';
         const expirationTime = decodedToken.exp * 1000; 
         const currentTime = Date.now();
 
-      
         const timeUntilExpiration = expirationTime - currentTime;
 
         if (timeUntilExpiration > 0) {
-          
-          setTimeout(() => {
+          this.clearTokenExpirationCheck();
+
+          this.timeoutId = setTimeout(() => {
             this.logout(); 
             alert('Sua sessão expirou. Por favor, faça login novamente.');
           }, timeUntilExpiration);
@@ -94,7 +92,12 @@ private apiUrl='http://localhost:3000/api';
     }
   }
 
-
+  private clearTokenExpirationCheck(): void {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId); 
+      this.timeoutId = null; 
+    }
+  }
 
  
 
