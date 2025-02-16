@@ -18,5 +18,4 @@ if (this.authService.isLoggedIn()){
   return false;
 }
 }
-  
 };

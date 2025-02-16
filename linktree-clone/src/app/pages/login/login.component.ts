@@ -36,7 +36,7 @@ constructor(private router:Router,private authService: AuthService){
 }
 
 onLogin() {
-  this.authService.login(this.userName.value, this.password.value)
+  this.authService.login(this.userName.value || '', this.password.value || '')
 }
 
 }

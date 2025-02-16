@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express= require('express');
 const app= express();
 const port=3000
@@ -6,11 +7,13 @@ const pasth= require('path');
 const collection = require("./demo_create_mongo_db");
 const bcrypt= require('bcrypt');
 const jwt=require('jsonwebtoken');
-require('dotenv').config();
+const authMiddleware= require('./middleware/auth.js');
 app.use(cors());
+app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-const tokenkey= require('./.env');
+const tokenkey= process.env.tokenkey;
+
 
 app.post("/api/signup",async (req,res)=>{
     try {
@@ -48,32 +51,31 @@ app.post('/api/login', async (req,res)=>{
     }
     const passwordMatch= await bcrypt.compare(req.body.password,nomeInserido.password )
     if(passwordMatch){
-    const token=jwt.sign({id: user._id},tokenkey,{ algorithm: 'RS256',expiresIn: '1m' });
-    res.status(200).json({idToken:token,expiresIn: '1m'})
-    return res.json({ success: true });
+    const token=jwt.sign({_id: nomeInserido._id},tokenkey,{ expiresIn: '1m' });
+    return res.json({ token });
     }else{
       return res.status(401).json({ error: 'palavra-passe errada!' });
     }
 
     // res.json({success:true,token});
   }catch (error){
-   return res.json({message:'Credenciais Inválidas'});
+   return res.status(400).json({message:'credenciais inválidas!'})
   }
 })
 
-const auth=(req,res,next)=>{
-  const token = req.header('Authorization').replace('Bearer ', '');
-  try{
-    const decoded= jwt.verify(token,tokenkey);
-    req.user=decoded; // verify later for issues
-    next();
-  } catch (error) {
-    res.status(401).send({ message: 'Não autorizado' });
-  }
-}
+// const auth=(req,res,next)=>{
+//   const token = req.header('Authorization').replace('Bearer ', '');
+//   try{
+//     const decoded= jwt.verify(token,tokenkey);
+//     req.user=decoded; // verify later for issues
+//     next();
+//   } catch (error) {
+//     res.status(401).send({ message: 'Não autorizado' });
+//   }
+// }
 
-app.get('/protected',auth,(req,res)=>{
-  res.send({message:'Esta Rota está protegida',user:req.user});
+app.get('/api/protected',authMiddleware,(req,res)=>{
+  res.send({message:'Esta Rota está protegida',user:req.userName});
 });
 
 app.listen(port, ()=>console.log('server started at '+port))

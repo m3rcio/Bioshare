@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, input, Output, output } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../../auth.service';
 @Component({
   selector: 'app-sidebar',
   imports: [CommonModule,RouterModule],
@@ -9,7 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 export class SidebarComponent {
   isOpen = false;
-
+  authService=inject(AuthService);
   @Output() toggleSidebar = new EventEmitter<boolean>();
 
   toggle() {

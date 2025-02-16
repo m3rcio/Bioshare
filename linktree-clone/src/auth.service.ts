@@ -1,11 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { inject, Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from './environments/environment';
 import { OnInit } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
@@ -13,83 +13,86 @@ export class AuthService implements OnInit{
 
   
 private apiUrl='http://localhost:3000/api';
- private token=<string | null>('');
+ private token=<string>('');
 
    http= inject(HttpClient)
    router=inject(Router);
+   private loggedUser?: string;
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  tokenkey:string='auth-token';
   constructor() {
    }
    ngOnInit() {
-    this.checkTokenExpiration();
   }
-
-  login(userName: any, password: any) {
-    return this.http.post<{ token: any }>(`${this.apiUrl}/login`, { userName, password }).pipe(
-      catchError(error => {
-        console.error('Login error:', error);
-  
-  
-        if (error.error instanceof ProgressEvent) {
-          console.error('Erro de rede ou do servidor');
-        } else if (error.status === 404) {
-          console.error('Rota não encontrada (404)');
-        } else if (error.status === 500) {
-          console.error('Erro de servidor (500)');
+ 
+  login(userName: string, password: string) {
+    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { userName, password }).subscribe(
+      (res) => {
+        if (res.token) {
+          localStorage.setItem(this.tokenkey, res.token);
+          this.router.navigate(['/myprofile']);
+        } else {
+          console.error('Token não recebido na resposta');
         }
-  
-        return throwError(error);
-      })
-    ).subscribe(
-      (response) => {
-        this.token = response.token;
-        localStorage.setItem('token', this.token ?? '');
-        this.router.navigate(['/myprofile']);
-        console.log(this.token);
       },
-      (error) => {
-        console.error('Login failed:', error);
+      (err) => {
+        console.error('Erro no login:', err);
+        alert('Credenciais inválidas'); 
       }
     );
   }
 
-  checkTokenExpiration() {
-    const token = this.getToken();
-    if (!token) return;
-  
-    try {
-      const decoded: any = jwtDecode(token);
-      const expirationTime = decoded.exp * 1000;
-      const currentTime = Date.now();
-  
-      if (expirationTime > currentTime) {
-        setTimeout(() => {
-          this.logout();
-        }, expirationTime - currentTime);
-      } else {
-        this.logout();
-      }
-    } catch (error) {
-      console.error('Erro ao verificar expiração do token:', error);
-      this.logout();
-    }
+  getToken() {
+    return localStorage.getItem(this.tokenkey);
   }
 
-  logout(){
-    this.token=''; // verify later for issues
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
-
-  isLoggedIn():boolean{
+  isLoggedIn() {
     return !!this.getToken();
   }
 
-  getToken():string | null {
-    if (typeof window !== 'undefined') {
-      return this.token || localStorage.getItem('token');
-    }else{
-
-      return null;
-    }
+  logout() {
+    localStorage.removeItem(this.tokenkey);
+    this.router.navigate(['/login']);
   }
+  
+
+
+  // private storeJwtToken(jwt: string) {
+  //   localStorage.setItem(this.tokenkey, jwt);
+  // }
+
+ 
+
+
+
+  // getCurrentAuthUser() {
+  //   return this.http.get('http://www.example.com/api/auth/profile');
+  // }
+
+
+
+  // isTokenExpired() {
+  //   const tokens = localStorage.getItem(this.tokenkey);
+  //   if (!tokens) return true;
+  //   const token = JSON.parse(tokens).access_token;
+  //   const decoded = jwtDecode(token);
+  //   if (!decoded.exp) return true;
+  //   const expirationDate = decoded.exp * 1000;
+  //   const now = new Date().getTime();
+
+  //   return expirationDate < now;
+  // }
+
+  // refreshToken() {
+  //   let tokens: any = localStorage.getItem(this.tokenkey);
+  //   if (!tokens) return;
+  //   tokens = JSON.parse(tokens);
+  //   let refreshToken = tokens.refresh_token;
+  //   return this.http
+  //     .post<any>('https://www.example.com/api/auth/refresh-token', {
+  //       refreshToken,
+  //     })
+  //     .pipe(tap((tokens: any) => this.storeJwtToken(JSON.stringify(tokens))));
+  // }
+
 }
