@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Inject, inject, Injectable,PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from './environments/environment';
 import { OnInit } from '@angular/core';
 import {jwtDecode} from "jwt-decode";
 import { isPlatformBrowser } from '@angular/common';
