@@ -62,16 +62,7 @@ app.post('/api/login', async (req,res)=>{
   }
 })
 
-// const auth=(req,res,next)=>{
-//   const token = req.header('Authorization').replace('Bearer ', '');
-//   try{
-//     const decoded= jwt.verify(token,tokenkey);
-//     req.user=decoded; // verify later for issues
-//     next();
-//   } catch (error) {
-//     res.status(401).send({ message: 'Não autorizado' });
-//   }
-// }
+
 
 app.get('/api/protected',authMiddleware,(req,res)=>{
   res.send({message:'Esta Rota está protegida',user:req.userName});

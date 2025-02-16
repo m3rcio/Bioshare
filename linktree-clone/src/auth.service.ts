@@ -57,7 +57,6 @@ private apiUrl='http://localhost:3000/api';
         return decodedToken.exp > currentTime;
       }
     }
-    // return this.isBrowser && !!this.getToken();
     return false;
   }
 
