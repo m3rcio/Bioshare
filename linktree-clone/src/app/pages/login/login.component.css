@@ -6,26 +6,32 @@
         background-color: #3f94e4;
         font-family: sans-serif;
     }
-  h1{
-    color:#ccc;
+  .title{
+    color:#000000;
     text-align:center;
-    font-size: 50px;
+    font-size: 30px;
     font-family: sans-serif;
+    font-weight: bold;
   }
   
   .login-form{
     width:350px;
+    height: 400px;
     padding:40px 30px;
     background:#eee;
     margin:auto;
     border:1px solid #fff;
     border-radius: 10px;
     position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     left: 0;
     right: 0;
     top:10%;
   }
   .form-group{
+    width: 100%;
     position: relative;
     margin-bottom:15px;
   }
@@ -34,16 +40,20 @@
     height:50px;
     border:none;
     padding:5px 7px 5px 15px;
-    background:#fff;
-    color:#666;
+    background:#E3E3E3;
+    color:#5E5858;
     border:1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 19px;
   
   }
+
+  input:focus{outline: 2px solid #5E5858;}
+  #userName{margin-top: 15px;width:100%;}
+  #password{ margin-top: 15px;width:100%;}
   
   
   .log-btn{
-    background:#1c3ed4;
+    background:#0564D0;
     width:100%;
     font-size:16px;
     height:50px;
@@ -52,6 +62,7 @@
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    margin-bottom: 1px;
   }
   
   .link{
