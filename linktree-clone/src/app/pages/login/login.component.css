@@ -12,13 +12,14 @@
     font-size: 30px;
     font-family: sans-serif;
     font-weight: bold;
+    margin-bottom: 40px;
   }
   
   .login-form{
     width:350px;
-    height: 400px;
+    height: 370px;
     padding:40px 30px;
-    background:#eee;
+    background:#ffffff;
     margin:auto;
     border:1px solid #fff;
     border-radius: 10px;
@@ -29,6 +30,8 @@
     left: 0;
     right: 0;
     top:10%;
+    box-shadow: 0px 10px 17px -3px rgba(0,0,0,0.74);
+    margin-top: 70px;
   }
   .form-group{
     width: 100%;
@@ -43,8 +46,8 @@
     background:#E3E3E3;
     color:#5E5858;
     border:1px solid #ddd;
-    border-radius: 19px;
-  
+    border-radius: 25px;
+    font-weight: bolder;
   }
 
   input:focus{outline: 2px solid #5E5858;}
@@ -56,13 +59,16 @@
     background:#0564D0;
     width:100%;
     font-size:16px;
+    font-weight: bold;
     height:50px;
     color:#fff;
     text-decoration:none;
     border-radius: 10px;
     border: none;
+    padding: 20px;
+    text-align: center;
     cursor: pointer;
-    margin-bottom: 1px;
+    /* margin-top: 20px; */
   }
   
   .link{
