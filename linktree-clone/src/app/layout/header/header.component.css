@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+*{ font-family: "Inter", serif;}
+
+.header{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.signup-btn{
+    background:#0564D0;
+    font-size:16px;
+    font-weight: bold;
+    height:40px;
+    color:#fff;
+    text-decoration:none;
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  span{
+    color: #5E5858;
+    margin: 5px;
+    font-weight: bold;
+    font-size:16px;
+  }

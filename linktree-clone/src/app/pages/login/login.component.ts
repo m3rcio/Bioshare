@@ -7,10 +7,10 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../auth.service';
 import { error } from 'node:console';
 import { environment } from '../../../environments/environment';
-
+import { HeaderComponent } from '../../layout/header/header.component';
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,NgIf ],
+  imports: [ReactiveFormsModule,NgIf,HeaderComponent ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
