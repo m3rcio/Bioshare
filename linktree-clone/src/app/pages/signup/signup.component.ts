@@ -1,12 +1,13 @@
 import { Component,inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Router,RouterLink } from '@angular/router';
+import { Router,RouterLink, RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { HeaderComponent } from '../../layout/header/header.component';
 @Component({
   selector: 'app-signup',
-  imports: [ReactiveFormsModule,NgIf],
+  imports: [ReactiveFormsModule,NgIf,HeaderComponent,RouterModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   providers: [RouterLink ]
