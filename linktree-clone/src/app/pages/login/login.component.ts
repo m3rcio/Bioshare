@@ -8,9 +8,10 @@ import { AuthService } from '../../../auth.service';
 import { error } from 'node:console';
 import { environment } from '../../../environments/environment';
 import { HeaderComponent } from '../../layout/header/header.component';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,NgIf,HeaderComponent ],
+  imports: [ReactiveFormsModule,NgIf,HeaderComponent,RouterLink ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

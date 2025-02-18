@@ -10,7 +10,7 @@
       <input type="password" class="form-control" placeholder="Password" id="Passwod" name="password" [formControl]="password">
       <i class="mdi mdi-lock"></i>
     </div>
-    <a class="link" href="#">Esqueceu a palavra passe?</a>
     <span *ngIf="spanAlerta" class="alert">Credenciais inválidas</span>
     <button type="button" class="log-btn"  (click)="onLogin()"><i class="mdi mdi-account"></i> Log in</button>
+    <span class="span-signup"> <a  [routerLink]="'/signup'">Não tem uma conta? Cadastre-se</a></span>
   </div>

@@ -17,7 +17,7 @@
   
   .login-form{
     width:350px;
-    height: 370px;
+    height: 380px;
     padding:40px 30px;
     background:#ffffff;
     margin:auto;
@@ -89,5 +89,12 @@
       text-decoration:none !important;
   }
   
-  
+  .span-signup{
+   
+    margin-top: 15px;
+  }
+  span a {
+    color:#0564D0;
+    text-decoration: underline;
+  }
   
