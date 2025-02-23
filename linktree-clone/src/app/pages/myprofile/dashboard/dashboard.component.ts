@@ -15,4 +15,7 @@ export class DashboardComponent {
 
   @Input() sidebarOpen = false;
 
+  criarSocialLink(){
+    return 0;
+  }
 }
