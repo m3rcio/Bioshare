@@ -32,4 +32,25 @@ const loginSchema= new mongoose.Schema({
 
 const collection= new mongoose.model("users",loginSchema);
 
-module.exports= collection;
+const socialLink= new mongoose.Schema({
+  title:{
+    type:String,
+    rewuired:true
+  },
+  Url:{
+    type:String,
+    required:true
+  },
+  isActive:{
+    type:Boolean,
+    default:false
+  },
+  icon:{
+    type:String,
+    required:false
+  }
+});
+
+const socialLinks_Schema= new mongoose.model("socialLinks",socialLink);
+
+module.exports= {collection,socialLinks_Schema};
