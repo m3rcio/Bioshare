@@ -17,6 +17,7 @@ export class DashboardComponent {
   @Input() sidebarOpen = false;
 
   socialLink: socialLinks={
+    user_id:0,
     title:'',
     url:'',
     isActive:false,

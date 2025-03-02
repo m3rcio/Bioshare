@@ -4,7 +4,7 @@ const app= express();
 const port=3000
 const cors= require('cors');
 const pasth= require('path');
-const collection = require("./demo_create_mongo_db");
+const {User,socialLinks_Schema} = require("./demo_create_mongo_db");
 const bcrypt= require('bcrypt');
 const jwt=require('jsonwebtoken');
 const authMiddleware= require('./middleware/auth.js');
@@ -23,28 +23,34 @@ app.post("/api/signup",async (req,res)=>{
           email: req.body.email
         };
     
-        const usuarioExistente = await collection.findOne({ nome: data.nome });
+        const usuarioExistente = await User.findOne({ nome: data.nome });
     
         if (usuarioExistente) {
           return res.status(400).json({message:'Este username já existe. Por favor escolha outro'});
         }
 
+        const emailExistente = await User.findOne({ email: data.email });
+        if (emailExistente) {
+          return res.status(400).json({ message: "Este email já está cadastrado." });
+        }
+
         const saltRounds= 10;
         data.password= await bcrypt.hash(data.password, saltRounds);
+
+        await User.insertMany(data);
       
-        const userData = await collection.insertMany(data);
-        res.status(201).json({message: 'Usuário criado com sucesso!'});
+        return res.status(201).json({message: 'Usuário criado com sucesso!'});
   
 
       } catch (error) {
         console.error('Error during signup:', error);
-      
+        return res.status(500).json({ message: "Erro no servidor." });
       }
 })
 
 app.post('/api/login', async (req,res)=>{
   try{
-    const nomeInserido= await collection.findOne({nome: req.body.userName});
+    const nomeInserido= await User.findOne({nome: req.body.userName});
     if(!nomeInserido){
       return res.status(404).json({ error: 'usuário não encontrado' });
       
