@@ -16,6 +16,8 @@ export class DashboardComponent {
 
   @Input() sidebarOpen = false;
 
+  sociallinkDivShowing:boolean=false;
+
   socialLink: socialLinks={
     user_id:0,
     title:'',
@@ -24,7 +26,7 @@ export class DashboardComponent {
     icon:''
   }
 
-  criarSocialLink(){
-    return 0;
+  adicionarSocialLink(){
+    this.sociallinkDivShowing=true;
   }
 }

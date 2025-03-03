@@ -3,11 +3,13 @@
         <h1>Menu Principal</h1>
 
         <div>
-          <button class="adicionar-link" (click)="criarSocialLink()">
+          <button class="adicionar-link" (click)="adicionarSocialLink()">
           Adicionar Link
         </button>
-        <div class="socialLink">
-                                                                                
+        <div *NgIf="sociallinkDivShowing"  class="socialLinkDiv">
+              <div *NgFor="let sociallink of socialLinks" class="socialLinkDiv">
+                
+              </div>                                      
         </div>
       </div>
       </div>
