@@ -1,4 +1,5 @@
-export interface socialLinks{
+export interface SocialLinks{
+    socialLink_id:number,
     title:string | null,
     url:string | null,
     isActive: boolean,

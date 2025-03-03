@@ -5,7 +5,7 @@ import { NgIf } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterOutlet,RouterLink } from '@angular/router';
-import { socialLinks } from '../../../models/sociallinks.model';
+import { SocialLinks } from '../../../models/sociallinks.model';
 @Component({
   selector: 'app-dashboard',
   imports: [ReactiveFormsModule,CommonModule,RouterLink ],
@@ -18,13 +18,7 @@ export class DashboardComponent {
 
   sociallinkDivShowing:boolean=false;
 
-  socialLink: socialLinks={
-    user_id:0,
-    title:'',
-    url:'',
-    isActive:false,
-    icon:''
-  }
+  socialLinks: SocialLinks[]=[];
 
   adicionarSocialLink(){
     this.sociallinkDivShowing=true;
