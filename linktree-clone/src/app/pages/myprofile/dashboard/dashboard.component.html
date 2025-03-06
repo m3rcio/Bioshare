@@ -6,10 +6,15 @@
           <button class="adicionar-link" (click)="adicionarSocialLink()">
           Adicionar Link
         </button>
-        <div *NgIf="sociallinkDivShowing"  class="socialLinkDiv">
-              <div *NgFor="let sociallink of socialLinks" class="socialLinkDiv">
-                
-              </div>                                      
+        <div *ngIf="sociallinkDivShowing">
+              <!-- <div *ngFor="let sociallink of socialLinks" > -->
+                <div class="socialLinkDiv">
+                  <label>Nome:</label>
+                <input type="text">
+                <label>Url:</label>
+                <input type="text">
+                </div>
+              <!-- </div>                                       -->
         </div>
       </div>
       </div>
