@@ -11,33 +11,33 @@ import { Observable } from 'rxjs';
   
     constructor(private http: HttpClient) { }
   
-    criarProjeto(socialLink: SocialLinks): Observable<SocialLinks> {
-      const apiUrl = `${this.apiBaseUrl}/projects/register`;
+    criarSocialLink(socialLink: SocialLinks): Observable<SocialLinks> {
+      const apiUrl = `${this.apiBaseUrl}/socialLinks/register`;
       return this.http.post<SocialLinks>(apiUrl, socialLink);
     }
    
-    atualizarSocialLinks(SocialLinks: SocialLinks): Observable<SocialLinks> {
-      const apiUrl = `${this.apiBaseUrl}/projects/${SocialLinks.socialLink_id}`;
+    atualizarSocialLink(SocialLinks: SocialLinks): Observable<SocialLinks> {
+      const apiUrl = `${this.apiBaseUrl}/socialLinks/${SocialLinks.socialLink_id}`;
       return this.http.put<SocialLinks>(apiUrl, SocialLinks);
     }
   
     excluirSocialLink(idSocialLink: number): Observable<void> {
-      const apiUrl = `${this.apiBaseUrl}/projects/${idSocialLink}`;
+      const apiUrl = `${this.apiBaseUrl}/socialLinks/${idSocialLink}`;
       return this.http.delete<void>(apiUrl);
     }
   
-    getSocialLinkss(): Observable<SocialLinks[]> {
-      const apiUrl = `${this.apiBaseUrl}/projects`;
+    getSocialLinks(): Observable<SocialLinks[]> {
+      const apiUrl = `${this.apiBaseUrl}/socialLinks`;
       return this.http.get<SocialLinks[]>(apiUrl);
     }
   
     getSocialLinksById(idSocialLinks: number): Observable<SocialLinks> {
-      const apiUrl = `${this.apiBaseUrl}/projects/${idSocialLinks}`;
+      const apiUrl = `${this.apiBaseUrl}/socialLinks/${idSocialLinks}`;
       return this.http.get<SocialLinks>(apiUrl);
     }
   
-    getSocialLinkssByPosicaoId(posicaoId: number): Observable<SocialLinks[]> {
-      const apiUrl = `${this.apiBaseUrl}/projects/posicao/${posicaoId}`;
+    getSocialLinksByUserId(posicaoId: number): Observable<SocialLinks[]> {
+      const apiUrl = `${this.apiBaseUrl}/socialLinks/user/${posicaoId}`;
       return this.http.get<SocialLinks[]>(apiUrl);
     }
   }
