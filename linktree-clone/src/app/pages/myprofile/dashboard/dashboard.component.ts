@@ -21,6 +21,7 @@ export class DashboardComponent {
   socialLinks: SocialLinks[]=[];
 
   adicionarSocialLink(){
+    
     this.sociallinkDivShowing=true;
   }
 }

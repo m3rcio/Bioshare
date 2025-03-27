@@ -7,37 +7,37 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
   })
   export class ProjetoService {
-    private apiBaseUrl = 'http://localhost:3000';
+    private apiBaseUrl = 'http://localhost:3000/api';
   
     constructor(private http: HttpClient) { }
   
     criarSocialLink(socialLink: SocialLinks): Observable<SocialLinks> {
-      const apiUrl = `${this.apiBaseUrl}/socialLinks/register`;
+      const apiUrl = `${this.apiBaseUrl}/social-links`;
       return this.http.post<SocialLinks>(apiUrl, socialLink);
     }
    
     atualizarSocialLink(SocialLinks: SocialLinks): Observable<SocialLinks> {
-      const apiUrl = `${this.apiBaseUrl}/socialLinks/${SocialLinks.socialLink_id}`;
+      const apiUrl = `${this.apiBaseUrl}/social-links/${SocialLinks.socialLink_id}`;
       return this.http.put<SocialLinks>(apiUrl, SocialLinks);
     }
   
     excluirSocialLink(idSocialLink: number): Observable<void> {
-      const apiUrl = `${this.apiBaseUrl}/socialLinks/${idSocialLink}`;
+      const apiUrl = `${this.apiBaseUrl}/social-links/${idSocialLink}`;
       return this.http.delete<void>(apiUrl);
     }
   
     getSocialLinks(): Observable<SocialLinks[]> {
-      const apiUrl = `${this.apiBaseUrl}/socialLinks`;
+      const apiUrl = `${this.apiBaseUrl}/social-links`;
       return this.http.get<SocialLinks[]>(apiUrl);
     }
   
     getSocialLinksById(idSocialLinks: number): Observable<SocialLinks> {
-      const apiUrl = `${this.apiBaseUrl}/socialLinks/${idSocialLinks}`;
+      const apiUrl = `${this.apiBaseUrl}/social-links/${idSocialLinks}`;
       return this.http.get<SocialLinks>(apiUrl);
     }
   
-    getSocialLinksByUserId(posicaoId: number): Observable<SocialLinks[]> {
-      const apiUrl = `${this.apiBaseUrl}/socialLinks/user/${posicaoId}`;
+    getSocialLinksByUserId(user_id: number): Observable<SocialLinks[]> {
+      const apiUrl = `${this.apiBaseUrl}/social-links/user/${user_id}`;
       return this.http.get<SocialLinks[]>(apiUrl);
     }
   }
