@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
   })
-  export class ProjetoService {
+  export class SocialLinkService {
     private apiBaseUrl = 'http://localhost:3000/api';
   
     constructor(private http: HttpClient) { }
