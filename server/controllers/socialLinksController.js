@@ -1,15 +1,18 @@
-const SocialLink = require("../models/SocialLink");
+const SocialLink = require("../demo_create_mongo_db");
 
 const createSocialLink = async (req, res) => {
     try {
         const { title, Url, isActive, icon, user_id } = req.body;
 
+        if (!title || !Url || !user_id) {
+            return res.status(400).json({ error: "Missing required fields" });
+        }
         const newSocialLink = new SocialLink({ title, Url, isActive, icon, user_id });
         await newSocialLink.save();
 
         res.status(201).json({ message: "Social link created successfully", socialLink: newSocialLink });
     } catch (error) {
-        res.status(500).json({ error: "Internal server error" });
+        res.status(500).json({ error: "erro do servidor!!!" });
     }
 };
 

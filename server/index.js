@@ -8,6 +8,7 @@ const {User,socialLinks_Schema} = require("./demo_create_mongo_db");
 const bcrypt= require('bcrypt');
 const jwt=require('jsonwebtoken');
 const authMiddleware= require('./middleware/auth.js');
+const SocialLinksRoutes=require('./routes/socialLinksRoutes');
 app.use(cors());
 app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(express.json())
@@ -15,6 +16,8 @@ app.use(express.urlencoded({extended:false}))
 const tokenkey= process.env.tokenkey;
 
 
+
+app.use("/api",SocialLinksRoutes)
 app.post("/api/signup",async (req,res)=>{
     try {
         const data = {
