@@ -1,24 +1,26 @@
-const SocialLink = require("../demo_create_mongo_db");
+const {User,socialLinks_Schema} = require("../socialLink.js");
 
 const createSocialLink = async (req, res) => {
     try {
         const { title, Url, isActive, icon, user_id } = req.body;
 
-        if (!title || !Url || !user_id) {
-            return res.status(400).json({ error: "Missing required fields" });
+        if (!title || !Url) {
+            return res.status(400).json({ error: "Complete todos os campos!" });
         }
-        const newSocialLink = new SocialLink({ title, Url, isActive, icon, user_id });
+        const newSocialLink = new socialLinks_Schema({ title, Url, isActive, icon, user_id });
         await newSocialLink.save();
 
-        res.status(201).json({ message: "Social link created successfully", socialLink: newSocialLink });
+        res.status(201).json({ message: "Social link criado com sucesso!", socialLink: newSocialLink });
     } catch (error) {
-        res.status(500).json({ error: "erro do servidor!!!" });
+        let errocod;
+       errocod= console.error("Erro ao criar o Link:", error);
+        res.status(500).json({ error: "erro do servidor!!!"+errocod });
     }
 };
 
 const getAllSocialLinks = async (req, res) => {
     try {
-        const socialLinks = await SocialLink.find();
+        const socialLinks = await socialLinks_Schema.find();
         res.json(socialLinks);
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });
@@ -28,7 +30,7 @@ const getAllSocialLinks = async (req, res) => {
 const getSocialLinksByUser = async (req, res) => {
     try {
         const { user_id } = req.params;
-        const socialLinks = await SocialLink.find({ user_id });
+        const socialLinks = await socialLinks_Schema.find({ user_id });
 
         if (!socialLinks.length) {
             return res.status(404).json({ message: "No social links found for this user" });
@@ -43,7 +45,7 @@ const getSocialLinksByUser = async (req, res) => {
 const updateSocialLink = async (req, res) => {
     try {
         const { id } = req.params;
-        const updatedSocialLink = await SocialLink.findByIdAndUpdate(id, req.body, { new: true });
+        const updatedSocialLink = await socialLinks_Schema.findByIdAndUpdate(id, req.body, { new: true });
 
         if (!updatedSocialLink) {
             return res.status(404).json({ message: "Social link not found" });
@@ -58,7 +60,7 @@ const updateSocialLink = async (req, res) => {
 const deleteSocialLink = async (req, res) => {
     try {
         const { id } = req.params;
-        const deletedSocialLink = await SocialLink.findByIdAndDelete(id);
+        const deletedSocialLink = await socialLinks_Schema.findByIdAndDelete(id);
 
         if (!deletedSocialLink) {
             return res.status(404).json({ message: "Social link not found" });
