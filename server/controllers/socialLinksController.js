@@ -33,7 +33,7 @@ const getSocialLinksByUser = async (req, res) => {
         const socialLinks = await socialLinks_Schema.find({ user_id });
 
         if (!socialLinks.length) {
-            return res.status(404).json({ message: "No social links found for this user" });
+            return res.status(404).json({ message: "Social link não encontrado pra este usuário" });
         }
 
         res.json(socialLinks);
@@ -44,11 +44,11 @@ const getSocialLinksByUser = async (req, res) => {
 
 const updateSocialLink = async (req, res) => {
     try {
-        const { id } = req.params;
-        const updatedSocialLink = await socialLinks_Schema.findByIdAndUpdate(id, req.body, { new: true });
+        const { socialLink_id } = req.params;
+        const updatedSocialLink = await socialLinks_Schema.findByIdAndUpdate(socialLink_id, req.body, { new: true });
 
         if (!updatedSocialLink) {
-            return res.status(404).json({ message: "Social link not found" });
+            return res.status(404).json({ message: "Social link não encontrado" });
         }
 
         res.json({ message: "Social link updated", socialLink: updatedSocialLink });
@@ -59,14 +59,14 @@ const updateSocialLink = async (req, res) => {
 
 const deleteSocialLink = async (req, res) => {
     try {
-        const { id } = req.params;
-        const deletedSocialLink = await socialLinks_Schema.findByIdAndDelete(id);
+        const { socialLink_id } = req.params;
+        const deletedSocialLink = await socialLinks_Schema.findByIdAndDelete(socialLink_id);
 
         if (!deletedSocialLink) {
-            return res.status(404).json({ message: "Social link not found" });
+            return res.status(404).json({ message: "Social link não encontrado" });
         }
 
-        res.json({ message: "Social link deleted successfully" });
+        res.json({ message: "Social link apagado com sucesso!" });
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });
     }
