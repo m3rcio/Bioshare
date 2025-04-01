@@ -30,7 +30,7 @@ export class DashboardComponent {
     user_id: 0
   };
   criarSocialLink() {
-    this.socialLinkService.criarSocialLink(this.socialLink).subscribe(
+    this.socialLinkService.criarSocialLink(this.socialLink,this.socialLink.user_id).subscribe(
       () => {
         // Limpa os campos do formulário após o sucesso
         this.socialLink = {
