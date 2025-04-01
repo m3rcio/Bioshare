@@ -11,8 +11,8 @@ import { Observable } from 'rxjs';
   
     constructor(private http: HttpClient) { }
   
-    criarSocialLink(socialLink: SocialLinks): Observable<SocialLinks> {
-      const apiUrl = `${this.apiBaseUrl}/social-links`;
+    criarSocialLink(socialLink: SocialLinks,user_id:number): Observable<SocialLinks> {
+      const apiUrl = `${this.apiBaseUrl}/social-links/${user_id}`;
       return this.http.post<SocialLinks>(apiUrl, socialLink);
     }
    
