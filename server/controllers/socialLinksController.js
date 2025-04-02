@@ -14,7 +14,7 @@ const createSocialLink = async (req, res) => {
     } catch (error) {
         let errocod;
        errocod= console.error("Erro ao criar o Link:", error);
-        res.status(500).json({ error: "erro do servidor!!!"+errocod });
+        res.status(500).json({ error: "erro do servidor!"+errocod });
     }
 };
 
