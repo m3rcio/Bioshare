@@ -29,6 +29,9 @@ export class DashboardComponent {
     icon: '',
     user_id: 0
   };
+
+  carregarSocialLinks(){
+  }
   criarSocialLink() {
     this.socialLinkService.criarSocialLink(this.socialLink,this.socialLink.user_id).subscribe(
       () => {

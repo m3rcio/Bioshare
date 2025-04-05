@@ -5,20 +5,20 @@
         <div>
          
         <div *ngIf="sociallinkDivShowing">
-              <!-- <div *ngFor="let sociallink of socialLinks" > -->
+              <div *ngFor="let sociallink of socialLinks" >
                 <div class="socialLinkDiv">
-                  <!-- <label>Nome:</label> -->
+                  <label>Nome:{{socialLink.title}}</label>
                   <div id="title-input-div">
                     <i class="fa-solid fa-tag"></i>
                     <input type="text" placeholder="Título" [(ngModel)]="socialLink.title">
                   </div>
-                  <!-- <label>Url:</label> -->
+                  <label>Url:{{socialLink.Url}}</label>
                   <div id="url-input-div">
                     <i class="fas fa-link"></i>
                     <input type="text" placeholder="Url"  [(ngModel)]="socialLink.Url">
                   </div>
                 </div>
-              <!-- </div>                                       -->
+              </div>                                      
         </div><br><br>
         <button type="button" class="adicionar-link" (click)="criarSocialLink()">
           Adicionar Link
