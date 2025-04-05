@@ -2,7 +2,7 @@ import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet,RouterLink } from '@angular/router';
 import { SocialLinks } from '../../../models/sociallinks.model';
 import { SocialLinkService } from '../../../services/socialLink.service';
@@ -13,11 +13,13 @@ import { SocialLinkService } from '../../../services/socialLink.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
 
   @Input() sidebarOpen = false;
   constructor(private socialLinkService:SocialLinkService){}
-
+  ngOnInit(): void {
+    this.carregarSocialLinks();
+  }
   sociallinkDivShowing:boolean=true;
 
   socialLinks: SocialLinks[]=[];
@@ -31,6 +33,10 @@ export class DashboardComponent {
   };
 
   carregarSocialLinks(){
+    this.socialLinkService.getSocialLinks().subscribe((value)=>{
+      this.socialLinks=value;
+      (error: any)=>console.log('⚠ erro ao carregar Links!'+error)
+    });
   }
   criarSocialLink() {
     this.socialLinkService.criarSocialLink(this.socialLink,this.socialLink.user_id).subscribe(
