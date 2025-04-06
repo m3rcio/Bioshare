@@ -13,11 +13,11 @@ import { Observable } from 'rxjs';
   
     criarSocialLink(socialLink: SocialLinks,user_id:number): Observable<SocialLinks> {
       const apiUrl = `${this.apiBaseUrl}/social-links/${user_id}`;
-      return this.http.post<SocialLinks>(apiUrl, socialLink);
+      return this.http.post<SocialLinks>(apiUrl, { socialLink, user_id: user_id });
     }
    
-    atualizarSocialLink(SocialLinks: SocialLinks): Observable<SocialLinks> {
-      const apiUrl = `${this.apiBaseUrl}/social-links/${SocialLinks.socialLink_id}`;
+    atualizarSocialLink(SocialLink_id:number,SocialLinks: SocialLinks): Observable<SocialLinks> {
+      const apiUrl = `${this.apiBaseUrl}/social-links/${SocialLink_id}`;
       return this.http.put<SocialLinks>(apiUrl, SocialLinks);
     }
   

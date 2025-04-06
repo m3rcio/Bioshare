@@ -6,6 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet,RouterLink } from '@angular/router';
 import { SocialLinks } from '../../../models/sociallinks.model';
 import { SocialLinkService } from '../../../services/socialLink.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -19,11 +21,18 @@ export class DashboardComponent implements OnInit{
   constructor(private socialLinkService:SocialLinkService){}
   ngOnInit(): void {
     this.carregarSocialLinks();
+
+    this.saveSubject.pipe(
+      debounceTime(1000), 
+      distinctUntilChanged()
+    ).subscribe(() => {
+      this.carregarSocialLinks();
+    });
   }
   sociallinkDivShowing:boolean=true;
 
   socialLinks: SocialLinks[]=[];
-
+  private saveSubject = new Subject<void>();
   socialLink: SocialLinks = {
     title: '',
     Url: '',
@@ -32,12 +41,27 @@ export class DashboardComponent implements OnInit{
     user_id: 0
   };
 
+  onFieldChange() {
+    this.saveSubject.next();
+  }
+
   carregarSocialLinks(){
     this.socialLinkService.getSocialLinks().subscribe((value)=>{
       this.socialLinks=value;
       (error: any)=>console.log('⚠ erro ao carregar Links!'+error)
     });
   }
+
+  salvarSocialLink(socialLink: SocialLinks) {
+    if (socialLink.socialLink_id) { 
+      this.socialLinkService.atualizarSocialLink(socialLink.socialLink_id,socialLink).subscribe(
+        () => console.log('SocialLink atualizado com sucesso'),
+        (error) => console.error('Erro ao atualizar', error)
+      );
+    } else {
+      }
+  }
+
   criarSocialLink() {
     this.socialLinkService.criarSocialLink(this.socialLink,this.socialLink.user_id).subscribe(
       () => {
