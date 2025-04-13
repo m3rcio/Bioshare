@@ -1,5 +1,5 @@
 export interface SocialLinks{
-    socialLink_id?:number | null,
+    socialLink_id?:number,
     title:string | null,
     Url:string | null,
     isActive: boolean,

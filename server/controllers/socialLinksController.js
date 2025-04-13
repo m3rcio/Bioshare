@@ -4,10 +4,10 @@ const createSocialLink = async (req, res) => {
     try {
         const { title, Url, isActive, icon, user_id } = req.body;
 
-        if (!title || !Url) {
+        if (!title || !Url || !user_id) {
             return res.status(400).json({ error: "Complete todos os campos!" });
         }
-        const newSocialLink = new socialLinks_Schema({ title, Url, isActive, icon, user_id });
+        const newSocialLink = new socialLinks_Schema({ title, Url, isActive, icon, user_id:req.user_id });
         await newSocialLink.save();
 
         res.status(201).json({ message: "Social link criado com sucesso!", socialLink: newSocialLink });
