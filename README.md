@@ -1,2 +1,3 @@
 # linktree-clone
-Fazendo um Full Stack Web app como a plataforma Linktree usando Angular Js, Node, e MongoDB
+Aplicação Web Full Stack usando MongoDB, ExpressJs, AngularJs, e NodeJs no servidor (MEAN).
+
