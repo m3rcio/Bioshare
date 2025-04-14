@@ -1,4 +1,4 @@
-export interface user
+export interface User
 {
     user_id:number,
     nome:string,
