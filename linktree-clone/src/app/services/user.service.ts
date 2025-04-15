@@ -17,17 +17,17 @@ import {User} from "../models/user.model";
         }
        
         atualizarUser(User_id:number,Users: User): Observable<User> {
-          const apiUrl = `${this.apiBaseUrl}/social-links/${User_id}`;
+          const apiUrl = `${this.apiBaseUrl}/user/${User_id}`;
           return this.http.put<User>(apiUrl, Users);
         }
       
         excluirUser(idUser: number): Observable<void> {
-          const apiUrl = `${this.apiBaseUrl}/social-links/${idUser}`;
+          const apiUrl = `${this.apiBaseUrl}/user/${idUser}`;
           return this.http.delete<void>(apiUrl);
         }
       
         getUsers(): Observable<User[]> {
-          const apiUrl = `${this.apiBaseUrl}/social-links`;
+          const apiUrl = `${this.apiBaseUrl}/users`;
           return this.http.get<User[]>(apiUrl);
         }
       
@@ -37,7 +37,7 @@ import {User} from "../models/user.model";
         }
       
         getUsersByUserId(user_id: number): Observable<User[]> {
-          const apiUrl = `${this.apiBaseUrl}/social-links/user/${user_id}`;
+          const apiUrl = `${this.apiBaseUrl}/user/${user_id}`;
           return this.http.get<User[]>(apiUrl);
         }
   }
