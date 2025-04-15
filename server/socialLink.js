@@ -14,23 +14,6 @@ async function connectDB() {
   }
 connectDB();
 
-const loginSchema= new mongoose.Schema({
-  nome:{
-    type:String,
-    required: true
-  },
-  password:{
-    type:String,
-    required:true
-  },
-  email:{
-    type:String,
-    required:true
-  }
-});
-
-const User = mongoose.model("users", loginSchema);
-
 const socialLink=  mongoose.Schema({
   title:{
     type:String,
@@ -64,4 +47,4 @@ const socialLink=  mongoose.Schema({
 
 const socialLinks_Schema = mongoose.model("socialLinks",socialLink);
 
-module.exports= {User,socialLinks_Schema};
+module.exports= socialLinks_Schema;

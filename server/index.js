@@ -4,7 +4,6 @@ const app= express();
 const port=3000
 const cors= require('cors');
 const pasth= require('path');
-const {User,socialLinks_Schema} = require("./socialLink.js");
 const bcrypt= require('bcrypt');
 const jwt=require('jsonwebtoken');
 const authMiddleware= require('./middleware/auth.js');
@@ -14,10 +13,13 @@ app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 const tokenkey= process.env.tokenkey;
+const UserRoutes=require('./routes/userRoutes');
+const {User} = require("./user.js");
 
 
 
 app.use("/api",SocialLinksRoutes)
+app.use("/api",UserRoutes)
 app.post("/api/signup",async (req,res)=>{
     try {
         const data = {

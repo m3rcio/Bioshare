@@ -1,5 +1,4 @@
-const User=require('../../server/socialLink');
-
+const User = require("../user.js");
 
 
 const getAllUsers = async (req, res) => {
@@ -7,7 +6,8 @@ const getAllUsers = async (req, res) => {
         const users = await User.find();
         res.json(users);
     } catch (error) {
-        res.status(500).json({ error: "erro do servidor" });
+        console.error("Error in getAllUsers:", error); 
+        res.status(500).json({ error: error.message });
     }
 };
 
@@ -37,4 +37,17 @@ const updateUser = async (req,res)=>{
     }
 }
 
-module.exports = {  getAllUsers, deleteUser,updateUser };
+const getUsersById = async (req, res) => {
+    try {
+        const { user_id } = req.params;
+        const user = await User.findById(user_id);
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado' });
+        }
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: "erro do servidor" });
+    }
+};
+
+module.exports = {  getAllUsers, deleteUser,updateUser,getUsersById };
