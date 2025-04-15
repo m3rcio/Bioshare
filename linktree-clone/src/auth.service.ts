@@ -98,7 +98,19 @@ private apiUrl='http://localhost:3000/api';
     }
   }
 
- 
+  getUserId(): string | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decodedToken: any = jwtDecode(token);
+        return decodedToken.user_id || null;
+      } catch (error) {
+        console.error('Erro ao decodificar o token:', error);
+        return null;
+      }
+    }
+    return null;
+  }
 
 
 

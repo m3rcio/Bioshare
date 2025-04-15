@@ -8,6 +8,7 @@ import { SocialLinks } from '../../../models/sociallinks.model';
 import { SocialLinkService } from '../../../services/socialLink.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { UserService } from '../../../services/user.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -18,7 +19,7 @@ import { Subject } from 'rxjs';
 export class DashboardComponent implements OnInit{
 
   @Input() sidebarOpen = false;
-  constructor(private socialLinkService:SocialLinkService){}
+  constructor(private socialLinkService:SocialLinkService,private userService:UserService){}
   ngOnInit(): void {
     this.carregarSocialLinks();
 
@@ -85,5 +86,7 @@ export class DashboardComponent implements OnInit{
       }
     );
   }
-  
+  teste(){
+    return this.userService.getUsers();
+  }
 }

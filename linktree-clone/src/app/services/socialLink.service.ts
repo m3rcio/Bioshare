@@ -2,6 +2,7 @@ import { SocialLinks } from "../models/sociallinks.model";
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from "../../auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -9,9 +10,10 @@ import { Observable } from 'rxjs';
   export class SocialLinkService {
     private apiBaseUrl = 'http://localhost:3000/api';
   
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private authService: AuthService) { }
   
     criarSocialLink(socialLink: SocialLinks,user_id:number): Observable<SocialLinks> {
+      user_id= Number(this.authService.getUserId());
       const apiUrl = `${this.apiBaseUrl}/social-links/${user_id}`;
       return this.http.post<SocialLinks>(apiUrl, { socialLink, user_id: user_id });
     }

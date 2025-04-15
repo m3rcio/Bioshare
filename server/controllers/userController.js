@@ -1,4 +1,4 @@
-const User=require('./demo_create_mongo_db.js');
+const User=require('../../server/socialLink');
 
 
 
@@ -13,8 +13,8 @@ const getAllUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     try {
-        const { id } = req.params;
-        await User.findByIdAndDelete(id);
+        const { user_id } = req.params;
+        await User.findByIdAndDelete(user_id);
         res.json({ message: "Usuário excluido com sucesso" });
     } catch (error) {
         res.status(500).json({ error: "erro do servidor" });

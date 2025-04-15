@@ -13,7 +13,7 @@ async function connectDB() {
     }
   }
 connectDB();
-module.exports = mongoose;
+
 const loginSchema= new mongoose.Schema({
   nome:{
     type:String,
