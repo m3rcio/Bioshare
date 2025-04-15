@@ -32,12 +32,8 @@ import {User} from "../models/user.model";
         }
       
         getUsersById(idUsers: number): Observable<User> {
-          const apiUrl = `${this.apiBaseUrl}/social-links/${idUsers}`;
+          const apiUrl = `${this.apiBaseUrl}/user/${idUsers}`;
           return this.http.get<User>(apiUrl);
         }
-      
-        getUsersByUserId(user_id: number): Observable<User[]> {
-          const apiUrl = `${this.apiBaseUrl}/user/${user_id}`;
-          return this.http.get<User[]>(apiUrl);
-        }
+
   }
