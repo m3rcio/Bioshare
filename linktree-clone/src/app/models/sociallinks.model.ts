@@ -4,5 +4,5 @@ export interface SocialLinks{
     Url:string | null,
     isActive: boolean,
     icon:string | null,
-    user_id:number 
+    user_id:string
 }

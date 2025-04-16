@@ -23,8 +23,8 @@ private apiUrl='http://localhost:3000/api';
    ngOnInit() {
   }
  
-  login(userName: string, password: string) {
-    this.http.post<{ token: string }>(`${this.apiUrl}/login`, { userName, password }).subscribe(
+  login(nome: string, password: string) {
+    this.http.post<{ token: string }>(`${this.apiUrl}/login`, { nome, password }).subscribe(
       (res) => {
         if (res && res.token) {
           localStorage.setItem('auth-token', res.token);
@@ -98,18 +98,18 @@ private apiUrl='http://localhost:3000/api';
     }
   }
 
-  getUserId(): string | null {
+  getUserId(): string {
     const token = this.getToken();
     if (token) {
       try {
         const decodedToken: any = jwtDecode(token);
-        return decodedToken.user_id || null;
+        return decodedToken.user_id;
       } catch (error) {
         console.error('Erro ao decodificar o token:', error);
-        return null;
+        return '';
       }
     }
-    return null;
+    return '';
   }
 
 

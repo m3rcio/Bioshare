@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 const tokenkey= process.env.tokenkey;
 const UserRoutes=require('./routes/userRoutes');
-const {User} = require("./user.js");
+const User = require("./user.js");
 
 
 
@@ -55,7 +55,10 @@ app.post("/api/signup",async (req,res)=>{
 
 app.post('/api/login', async (req,res)=>{
   try{
-    const nomeInserido= await User.findOne({nome: req.body.userName});
+    if(!req.params.nome && !req.params.password){
+      console.log('sem nome');
+    }
+    const nomeInserido= await User.findOne({nome: req.body.nome});
     if(!nomeInserido){
       return res.status(404).json({ error: 'usuário não encontrado' });
       
@@ -76,7 +79,7 @@ app.post('/api/login', async (req,res)=>{
 
 
 app.get('/api/protected',authMiddleware,(req,res)=>{
-  res.send({message:'Esta Rota está protegida',user:req.userName});
+  res.send({message:'Esta Rota está protegida',user:req.nome});
 });
 
 app.use((err, req, res, next) => {

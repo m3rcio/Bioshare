@@ -9,6 +9,7 @@ import { SocialLinkService } from '../../../services/socialLink.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { UserService } from '../../../services/user.service';
+import { AuthService } from '../../../../auth.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -19,7 +20,7 @@ import { UserService } from '../../../services/user.service';
 export class DashboardComponent implements OnInit{
 
   @Input() sidebarOpen = false;
-  constructor(private socialLinkService:SocialLinkService,private userService:UserService){}
+  constructor(private socialLinkService:SocialLinkService,private userService:UserService,private authService:AuthService){}
   ngOnInit(): void {
     this.carregarSocialLinks();
 
@@ -39,7 +40,7 @@ export class DashboardComponent implements OnInit{
     Url: '',
     isActive: false,
     icon: '',
-    user_id: 0
+    user_id: ''
   };
 
   onFieldChange() {
@@ -72,7 +73,7 @@ export class DashboardComponent implements OnInit{
           Url: '',
           isActive: false,
           icon: '',
-          user_id: 0
+          user_id: ''
         };
         
       },
@@ -87,6 +88,6 @@ export class DashboardComponent implements OnInit{
     );
   }
   teste(){
-    return this.userService.getUsers();
+    return this.authService.getUserId();
   }
 }

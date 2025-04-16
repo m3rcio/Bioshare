@@ -16,12 +16,12 @@ import {User} from "../models/user.model";
           return this.http.post<User>(apiUrl, { User});
         }
        
-        atualizarUser(User_id:number,Users: User): Observable<User> {
+        atualizarUser(User_id:string,Users: User): Observable<User> {
           const apiUrl = `${this.apiBaseUrl}/user/${User_id}`;
           return this.http.put<User>(apiUrl, Users);
         }
       
-        excluirUser(idUser: number): Observable<void> {
+        excluirUser(idUser: string): Observable<void> {
           const apiUrl = `${this.apiBaseUrl}/user/${idUser}`;
           return this.http.delete<void>(apiUrl);
         }
@@ -31,7 +31,7 @@ import {User} from "../models/user.model";
           return this.http.get<User[]>(apiUrl);
         }
       
-        getUsersById(idUsers: number): Observable<User> {
+        getUsersById(idUsers: string): Observable<User> {
           const apiUrl = `${this.apiBaseUrl}/user/${idUsers}`;
           return this.http.get<User>(apiUrl);
         }

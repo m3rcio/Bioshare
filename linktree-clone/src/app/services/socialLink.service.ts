@@ -12,8 +12,8 @@ import { AuthService } from "../../auth.service";
   
     constructor(private http: HttpClient, private authService: AuthService) { }
   
-    criarSocialLink(socialLink: SocialLinks,user_id:number): Observable<SocialLinks> {
-      user_id= Number(this.authService.getUserId());
+    criarSocialLink(socialLink: SocialLinks,user_id:string): Observable<SocialLinks> {
+      user_id= this.authService.getUserId();
       const apiUrl = `${this.apiBaseUrl}/social-links/${user_id}`;
       return this.http.post<SocialLinks>(apiUrl, { socialLink, user_id: user_id });
     }
@@ -38,7 +38,7 @@ import { AuthService } from "../../auth.service";
       return this.http.get<SocialLinks>(apiUrl);
     }
   
-    getSocialLinksByUserId(user_id: number): Observable<SocialLinks[]> {
+    getSocialLinksByUserId(user_id: string): Observable<SocialLinks[]> {
       const apiUrl = `${this.apiBaseUrl}/social-links/user/${user_id}`;
       return this.http.get<SocialLinks[]>(apiUrl);
     }

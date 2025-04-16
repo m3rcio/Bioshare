@@ -14,37 +14,38 @@ async function connectDB() {
   }
 connectDB();
 
-const socialLink=  mongoose.Schema({
-  title:{
-    type:String,
-    required:function (){
-      this.isNew;
+
+const socialLinkSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: function () {
+      return this.isNew;
     },
-    default:''
+    default: "",
   },
-  Url:{
-    type:String,
-    required:function (){
-      this.isNew;
+  Url: {
+    type: String,
+    required: function () {
+      return this.isNew;
     },
-    default:''
+    default: "",
   },
-  isActive:{
-    type:Boolean,
-    default:false
+  isActive: {
+    type: Boolean,
+    default: false,
   },
-  icon:{
-    type:String,
-    required:false
+  icon: {
+    type: String,
+    required: false,
   },
-  user_id:{
-    type:Number,
-    required:function (){
-      this.isNew;
+  user_id: {
+    type: String,
+    required: function () {
+      return this.isNew;
     },
-  }
+  },
 });
 
-const socialLinks_Schema = mongoose.model("socialLinks",socialLink);
+const SocialLink = mongoose.model("SocialLink", socialLinkSchema);
 
-module.exports= socialLinks_Schema;
+module.exports = SocialLink;
