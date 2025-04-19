@@ -65,6 +65,7 @@ export class DashboardComponent implements OnInit{
   }
 
   criarSocialLink() {
+    this.socialLink.user_id=this.authService.getUserId();
     this.socialLinkService.criarSocialLink(this.socialLink,this.socialLink.user_id).subscribe(
       () => {
         // Limpa os campos do formulário após o sucesso

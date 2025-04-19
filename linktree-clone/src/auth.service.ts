@@ -100,22 +100,19 @@ private apiUrl='http://localhost:3000/api';
 
   getUserId(): string {
     const token = this.getToken();
+    
     if (token) {
       try {
         const decodedToken: any = jwtDecode(token);
-        return decodedToken.user_id;
+        return decodedToken._id;
       } catch (error) {
         console.error('Erro ao decodificar o token:', error);
         return '';
       }
     }
+  
     return '';
   }
 
-
-
-  // getCurrentAuthUser() {
-  //   return this.http.get('http://www.example.com/api/auth/profile');
-  // }
 
 }
