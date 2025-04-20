@@ -12,7 +12,7 @@
                     <i class="fa-solid fa-tag"></i>
                     <input type="text" placeholder="Título" [(ngModel)]="socialLink.title" (ngModelChange)="onFieldChange()">
                   </div>
-                  <label>Url:{{socialLink.Url}}</label>
+                  <label>Url</label>
                   <div id="url-input-div">
                     <i class="fas fa-link"></i>
                     <input type="text" placeholder="Url"  [(ngModel)]="socialLink.Url" (ngModelChange)="onFieldChange()">
@@ -20,7 +20,7 @@
                 </div>
               </div>                                      
         </div><br><br>
-        <button type="button" class="adicionar-link" (click)="teste()">
+        <button type="button" class="adicionar-link" (click)="criarSocialLink()">
           Adicionar Link
         </button>
       </div>

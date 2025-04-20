@@ -47,11 +47,20 @@ export class DashboardComponent implements OnInit{
     this.saveSubject.next();
   }
 
+  // carregarSocialLinks(){
+  //   this.socialLinkService.getSocialLinks().subscribe((value)=>{
+  //     this.socialLinks=value;
+  //     (error: any)=>console.log('⚠ erro ao carregar Links!'+error)
+  //   });
+  // }
+
   carregarSocialLinks(){
-    this.socialLinkService.getSocialLinks().subscribe((value)=>{
+    let usuarioLogadoId=this.authService.getUserId();
+    this.socialLinkService.getSocialLinksByUserId(usuarioLogadoId).subscribe((value)=>{
       this.socialLinks=value;
-      (error: any)=>console.log('⚠ erro ao carregar Links!'+error)
-    });
+    },(error)=>{
+      console.log('Erro ao carregar os Links: '+error)
+    })
   }
 
   salvarSocialLink(socialLink: SocialLinks) {
