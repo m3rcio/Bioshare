@@ -24,17 +24,17 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
     this.carregarSocialLinks();
 
-    this.saveSubject.pipe(
-      debounceTime(1000), 
-      distinctUntilChanged()
-    ).subscribe(() => {
-      this.carregarSocialLinks();
-    });
+    // this.saveSubject.pipe(
+    //   debounceTime(1000), 
+    //   distinctUntilChanged()
+    // ).subscribe(() => {
+    //   this.carregarSocialLinks();
+    // });
   }
   sociallinkDivShowing:boolean=true;
 
   socialLinks: SocialLinks[]=[];
-  private saveSubject = new Subject<void>();
+ 
   socialLink: SocialLinks = {
     title: '',
     Url: '',
@@ -44,7 +44,10 @@ export class DashboardComponent implements OnInit{
   };
 
   onFieldChange() {
-    this.saveSubject.next();
+   
+    this.socialLinks.forEach(sociallink=>{
+      this.socialLinkService.atualizarSocialLink(sociallink.socialLink_id,this.socialLink)
+    })
   }
 
   // carregarSocialLinks(){
