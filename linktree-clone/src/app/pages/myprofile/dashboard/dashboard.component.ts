@@ -10,6 +10,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../../auth.service';
+import { User } from '../../../models/user.model';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -23,7 +24,7 @@ export class DashboardComponent implements OnInit{
   constructor(private socialLinkService:SocialLinkService,private userService:UserService,private authService:AuthService){}
   ngOnInit(): void {
     this.carregarSocialLinks();
-
+    this.carregarUsuarios();
     // this.saveSubject.pipe(
     //   debounceTime(1000), 
     //   distinctUntilChanged()
@@ -34,7 +35,7 @@ export class DashboardComponent implements OnInit{
   sociallinkDivShowing:boolean=true;
 
   socialLinks: SocialLinks[]=[];
- 
+  users: User[]=[];
   socialLink: SocialLinks = {
     title: '',
     Url: '',
@@ -43,10 +44,10 @@ export class DashboardComponent implements OnInit{
     user_id: ''
   };
 
-  onFieldChange() {
-   
+  onFieldChange(id:number | undefined) {
+    const SocialLinkEditadoId=id;
     this.socialLinks.forEach(sociallink=>{
-      this.socialLinkService.atualizarSocialLink(sociallink.socialLink_id,this.socialLink)
+      this.socialLinkService.atualizarSocialLink(SocialLinkEditadoId,sociallink)
     })
   }
 
@@ -61,6 +62,14 @@ export class DashboardComponent implements OnInit{
     let usuarioLogadoId=this.authService.getUserId();
     this.socialLinkService.getSocialLinksByUserId(usuarioLogadoId).subscribe((value)=>{
       this.socialLinks=value;
+    },(error)=>{
+      console.log('Erro ao carregar os Links: '+error)
+    })
+  }
+
+  carregarUsuarios(){
+    this.userService.getUsers().subscribe((value)=>{
+      this.users=value;
     },(error)=>{
       console.log('Erro ao carregar os Links: '+error)
     })
