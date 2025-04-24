@@ -44,19 +44,28 @@ export class DashboardComponent implements OnInit{
     user_id: ''
   };
 
-  onFieldChange(id:string | undefined) {
-    const SocialLinkEditadoId=id;
-    this.socialLinks.forEach(sociallink=>{
-      this.socialLinkService.atualizarSocialLink(SocialLinkEditadoId,sociallink)
-    })
+  debounceTimers: { [key: string]: any } = {};
+
+  onFieldChange(socialLink:any,field:string) {
+    const id=socialLink.socialLink_id;
+
+    // Limpa o timer anterior se ainda estiver rodando
+  if (this.debounceTimers[id]) {
+    clearTimeout(this.debounceTimers[id]);
   }
 
-  // carregarSocialLinks(){
-  //   this.socialLinkService.getSocialLinks().subscribe((value)=>{
-  //     this.socialLinks=value;
-  //     (error: any)=>console.log('⚠ erro ao carregar Links!'+error)
-  //   });
-  // }
+   // Define um novo timer de 3 segundos
+   this.debounceTimers[id] = setTimeout(() => {
+    this.socialLinkService.atualizarSocialLink(id, socialLink)
+      .subscribe({
+        next: () => console.log(`Atualizado: ${field} do link ${id}`),
+        error: err => console.error('Erro ao salvar:', err)
+      });
+  }, 3000);
+
+  }
+
+
 
   carregarSocialLinks(){
     let usuarioLogadoId=this.authService.getUserId();

@@ -11,12 +11,12 @@
                   <label>Id: {{sociallink.socialLink_id}}</label>
                   <div id="title-input-div">
                     <i class="fa-solid fa-tag"></i>
-                    <input type="text" placeholder="Título" [(ngModel)]="socialLink.title" (ngModelChange)="onFieldChange(sociallink.socialLink_id)">
+                    <input type="text" placeholder="Título" [(ngModel)]="sociallink.title" (ngModelChange)="onFieldChange(sociallink,'title')">
                   </div>
                   <label>Url</label>
                   <div id="url-input-div">
                     <i class="fas fa-link"></i>
-                    <input type="text" placeholder="Url"  [(ngModel)]="socialLink.Url" (ngModelChange)="onFieldChange(sociallink.socialLink_id)">
+                    <input type="text" placeholder="Url"  [(ngModel)]="sociallink.Url" (ngModelChange)="onFieldChange(sociallink,'Url')">
                   </div>
                 </div>
               </div>                                      
