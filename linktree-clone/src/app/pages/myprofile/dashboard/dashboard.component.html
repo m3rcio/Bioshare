@@ -7,7 +7,7 @@
         <div *ngIf="sociallinkDivShowing">
               <div *ngFor="let sociallink of socialLinks" >
                 <div class="socialLinkDiv">
-                  <label>Nome:{{socialLink.title}}</label>
+                  <label>Nome</label>
                   <div id="title-input-div">
                     <i class="fa-solid fa-tag"></i>
                     <input type="text" placeholder="Título" [(ngModel)]="socialLink.title" (ngModelChange)="onFieldChange()">
