@@ -18,7 +18,7 @@ import { AuthService } from "../../auth.service";
       return this.http.post<SocialLinks>(apiUrl, { socialLink, user_id: user_id });
     }
    
-    atualizarSocialLink(SocialLink_id:number | undefined,SocialLinks: SocialLinks): Observable<SocialLinks> {
+    atualizarSocialLink(SocialLink_id:string | undefined,SocialLinks: SocialLinks): Observable<SocialLinks> {
       const apiUrl = `${this.apiBaseUrl}/social-links/${SocialLink_id}`;
       return this.http.put<SocialLinks>(apiUrl, SocialLinks);
     }
@@ -33,7 +33,7 @@ import { AuthService } from "../../auth.service";
       return this.http.get<SocialLinks[]>(apiUrl);
     }
   
-    getSocialLinksById(idSocialLinks: number): Observable<SocialLinks> {
+    getSocialLinksById(idSocialLinks: string| undefined): Observable<SocialLinks> {
       const apiUrl = `${this.apiBaseUrl}/social-links/${idSocialLinks}`;
       return this.http.get<SocialLinks>(apiUrl);
     }

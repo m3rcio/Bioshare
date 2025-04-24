@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit{
     user_id: ''
   };
 
-  onFieldChange(id:number | undefined) {
+  onFieldChange(id:string | undefined) {
     const SocialLinkEditadoId=id;
     this.socialLinks.forEach(sociallink=>{
       this.socialLinkService.atualizarSocialLink(SocialLinkEditadoId,sociallink)
@@ -110,6 +110,6 @@ export class DashboardComponent implements OnInit{
     );
   }
   teste(){
-    return this.authService.getUserId();
+
   }
 }

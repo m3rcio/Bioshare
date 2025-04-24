@@ -21,7 +21,19 @@ const createSocialLink = async (req, res) => {
 const getAllSocialLinks = async (req, res) => {
     try {
         const socialLinks = await socialLinks_Schema.find();
-        res.json(socialLinks);
+        
+        const linksMapeados= socialLinks.map(link=>({
+            socialLink_id: link._id.toString(),
+            title: link.title,
+            Url:link.Url,
+            isActive:link.isActive,
+            icon:link.icon,
+            user_id:link.user_id
+        }));
+
+        res.json(linksMapeados);
+        console.log(linksMapeados[6].socialLink_id)
+        console.log("ewdew")
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });
     }
@@ -31,12 +43,19 @@ const getSocialLinksByUser = async (req, res) => {
     try {
         const { user_id } = req.params;
         const socialLinks = await socialLinks_Schema.find({ user_id });
-
+        const linksMapeados= socialLinks.map(link=>({
+            socialLink_id: link._id.toString(),
+            title: link.title,
+            Url:link.Url,
+            isActive:link.isActive,
+            icon:link.icon,
+            user_id:link.user_id
+        }))
         if (!socialLinks.length) {
             return res.status(404).json({ message: "Social link não encontrado pra este usuário" });
         }
 
-        res.json(socialLinks);
+        res.json(linksMapeados);
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });
     }
