@@ -18,16 +18,12 @@ connectDB();
 const socialLinkSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: function () {
-      return this.isNew;
-    },
+    required: false,
     default: "",
   },
   Url: {
     type: String,
-    required: function () {
-      return this.isNew;
-    },
+    required: false,
     default: "",
   },
   isActive: {
@@ -40,9 +36,7 @@ const socialLinkSchema = new mongoose.Schema({
   },
   user_id: {
     type: String,
-    required: function () {
-      return this.isNew;
-    },
+    required: true,
   },
 });
 

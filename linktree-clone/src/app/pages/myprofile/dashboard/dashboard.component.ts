@@ -33,8 +33,8 @@ export class DashboardComponent implements OnInit{
   socialLinks: SocialLinks[]=[];
   users: User[]=[];
   socialLink: SocialLinks = {
-    title: '',
-    Url: '',
+    title: ' ',
+    Url: ' ',
     isActive: true,
     icon: '',
     user_id: ''
