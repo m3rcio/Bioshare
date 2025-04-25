@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit{
 
   debounceTimers: { [key: string]: any } = {};
 
-  onFieldChange(socialLink:any,field:string) {
+  onFieldChange(socialLink:any) {
     const id=socialLink.socialLink_id;
 
     // Limpa o timer anterior se ainda estiver rodando
@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit{
    this.debounceTimers[id] = setTimeout(() => {
     this.socialLinkService.atualizarSocialLink(id, socialLink)
       .subscribe({
-        next: () => console.log(`Atualizado: ${field} do link ${id}`),
+        next: () => console.log(`SocialLink Atualizado!`),
         error: err => console.error('Erro ao salvar:', err)
       });
   }, 3000);
