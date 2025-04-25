@@ -23,7 +23,7 @@ import { AuthService } from "../../auth.service";
       return this.http.put<SocialLinks>(apiUrl, SocialLinks);
     }
   
-    excluirSocialLink(idSocialLink: number): Observable<void> {
+    excluirSocialLink(idSocialLink: string | undefined): Observable<void> {
       const apiUrl = `${this.apiBaseUrl}/social-links/${idSocialLink}`;
       return this.http.delete<void>(apiUrl);
     }

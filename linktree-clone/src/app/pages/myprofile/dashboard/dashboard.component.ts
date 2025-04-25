@@ -25,12 +25,6 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
     this.carregarSocialLinks();
     this.carregarUsuarios();
-    // this.saveSubject.pipe(
-    //   debounceTime(1000), 
-    //   distinctUntilChanged()
-    // ).subscribe(() => {
-    //   this.carregarSocialLinks();
-    // });
   }
   sociallinkDivShowing:boolean=true;
 
@@ -92,6 +86,13 @@ export class DashboardComponent implements OnInit{
       );
     } else {
       }
+  }
+
+  apagarSocialLink(id:string | undefined){
+    this.socialLinkService.excluirSocialLink(id).subscribe(()=>{
+      console.log("SocialLink excluído com sucesso!")
+      this.carregarSocialLinks();
+    })
   }
 
   criarSocialLink() {
