@@ -21,7 +21,9 @@ import { User } from '../../../models/user.model';
 export class DashboardComponent implements OnInit{
 
   @Input() sidebarOpen = false;
-  constructor(private socialLinkService:SocialLinkService,private userService:UserService,private authService:AuthService){}
+  constructor(private socialLinkService:SocialLinkService,
+    private userService:UserService,
+    private authService:AuthService){}
   ngOnInit(): void {
     this.carregarSocialLinks();
     this.carregarUsuarios();
@@ -33,7 +35,7 @@ export class DashboardComponent implements OnInit{
   socialLink: SocialLinks = {
     title: '',
     Url: '',
-    isActive: false,
+    isActive: true,
     icon: '',
     user_id: ''
   };
@@ -107,11 +109,11 @@ export class DashboardComponent implements OnInit{
           icon: '',
           user_id: ''
         };
-        
+        this.carregarSocialLinks();
       },
       (error) => {
         let errorMessage = 'Ocorreu um erro ao tentar gravar o funcionário. Por favor, tente novamente mais tarde.';
-
+        console.log(errorMessage);
         if (error.status === 400) {
           errorMessage = 'Verifique os campos do formulário e tente novamente.';
         }
