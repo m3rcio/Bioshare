@@ -2,6 +2,9 @@
     <div>
         <h1>Menu Principal</h1>
 
+        <button type="button" class="adicionar-link" (click)="criarSocialLink()">
+          Adicionar Link
+        </button>
         <div>
          
         <div *ngIf="sociallinkDivShowing">
@@ -21,9 +24,7 @@
                 </div>
               </div>                                      
         </div><br><br>
-        <button type="button" class="adicionar-link" (click)="criarSocialLink()">
-          Adicionar Link
-        </button>
+        
       </div>
       </div>
 </main>
