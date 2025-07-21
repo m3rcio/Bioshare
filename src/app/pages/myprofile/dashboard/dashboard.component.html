@@ -1,0 +1,30 @@
+<main class="dashboard" [class.shifted]="sidebarOpen">
+    <div>
+        <h1>Menu Principal</h1>
+
+        <button type="button" class="adicionar-link" (click)="criarSocialLink()">
+          Adicionar Link
+        </button>
+        <div>
+         
+        <div *ngIf="sociallinkDivShowing">
+              <div *ngFor="let sociallink of socialLinks" >
+                <div class="socialLinkDiv">
+                  <button (click)="apagarSocialLink(sociallink.socialLink_id)">Apagar</button>
+                  <label>Nome</label>
+                  <div id="title-input-div">
+                    <i class="fa-solid fa-tag"></i>
+                    <input type="text" placeholder="Título" [(ngModel)]="sociallink.title" (ngModelChange)="onFieldChange(sociallink)">
+                  </div>
+                  <label>Url</label>
+                  <div id="url-input-div">
+                    <i class="fas fa-link"></i>
+                    <input type="text" placeholder="Url"  [(ngModel)]="sociallink.Url" (ngModelChange)="onFieldChange(sociallink)">
+                  </div>
+                </div>
+              </div>                                      
+        </div><br><br>
+        
+      </div>
+      </div>
+</main>

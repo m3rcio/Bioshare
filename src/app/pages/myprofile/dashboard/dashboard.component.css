@@ -1,0 +1,80 @@
+body{
+  background-color: rgb(165, 163, 163);
+}
+
+h1{
+  font-family: Arial;
+}
+
+main {
+  padding: 20px;
+  z-index: 1;
+  padding-left: calc(82px + 20px);
+}
+
+
+.dashboard {
+  flex: 1;
+  margin-left: 82px; 
+  transition: margin-left 0.3s ease;
+  padding: 20px;
+}
+
+.dashboard.shifted {
+  margin-left: 250px; 
+}
+
+.adicionar-link{
+  background-color: rgb(79, 112, 221);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.socialLinkDiv{
+  position: relative;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 60px 20px 20px;
+  border: 1px solid black;
+  border-radius: 25px;
+}
+
+.socialLinkDiv input{
+  width: 100%;
+  padding: 15px 10px 15px 15px;
+  border: none;
+  background-color: #cfcfcf;
+  color: rgb(29, 29, 29);
+  border-radius: 20px;
+  text-indent: 15px;
+}
+
+#title-input-div{
+margin-bottom: 10px;
+}
+
+#url-input-div{
+margin-top: 10px;
+}
+#url-input-div input{
+  text-indent: 20px;
+}
+
+#title-input-div i{
+  margin-left: 14px;
+}
+
+#title-input-div input{
+  text-indent: 20px;
+}
+
+.socialLinkDiv i {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 14px;
+  color: rgb(29, 29, 29);
+}
+
