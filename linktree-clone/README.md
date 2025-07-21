@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # LinktreeClone
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.1.
@@ -58,8 +57,3 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-=======
-# Bioshare
-Aplicação Web Full Stack para ajudar o usuário a ter todos os seus perfís sociais (Facebook, Linkedin, Instagram, Whatsapp, etc) Tudo em um único lugar. Este app foi desenvolvido usando MongoDB, ExpressJs, AngularJs, e NodeJs no servidor (MEAN).
-
->>>>>>> 1b31a1b90e4217d45a54fb265721f958d608cd27
