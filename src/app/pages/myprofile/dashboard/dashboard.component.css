@@ -1,5 +1,5 @@
 body{
-  background-color: rgb(165, 163, 163);
+  background-color: rgb(255, 255, 255);
 }
 
 h1{
@@ -58,6 +58,17 @@ main {
   border-radius: 10px;
   border: none;
   color: white;
+}
+
+.drag-btn {
+  cursor: grab;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  margin-right: 5px;
+}
+.drag-btn:active {
+  cursor: grabbing;
 }
 
 #title-input-div{

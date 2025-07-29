@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit{
     if (el) {
       new Sortable(el, {
         animation: 150,
+        handle: '.drag-btn',
         ghostClass: 'dragging'
       });
     }
