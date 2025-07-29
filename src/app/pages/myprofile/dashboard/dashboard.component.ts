@@ -93,6 +93,21 @@ export class DashboardComponent implements OnInit{
     })
   }
 
+  copiarLink(url:string | null){
+    if(!url){
+      return;
+    }else{
+        navigator.clipboard.writeText(url).then(() => {
+    Swal.fire({
+      title: "Copiado!",
+      text: "O Link foi Copiado com sucesso.",
+      icon: "success"
+    });
+  }).catch(err => {
+    console.error('Erro ao copiar o link:', err);
+  });
+    }
+  }
   salvarSocialLink(socialLink: SocialLinks) {
     if (socialLink.socialLink_id) { 
       this.socialLinkService.atualizarSocialLink(socialLink.socialLink_id,socialLink).subscribe(

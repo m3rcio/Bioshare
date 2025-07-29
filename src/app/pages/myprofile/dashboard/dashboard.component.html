@@ -16,7 +16,10 @@
                   <button class="drag-btn" title="Arrastar">
                   <i class="fa-solid fa-grip-lines"></i>
                   </button>
-                  <button (click)="apagarSocialLink(sociallink.socialLink_id)" class="apagar-btn">Apagar</button>
+                  <button (click)="apagarSocialLink(sociallink.socialLink_id)" class="apagar-btn"> <i class="fas fa-times"></i></button>
+                  <button (click)="copiarLink(sociallink.Url)" class="copiar-btn" title="Copiar">
+                    <i class="fas fa-copy"></i>
+                  </button>
                   <label>Nome</label>
                   <div id="title-input-div">
                     <i class="fa-solid fa-tag"></i>
