@@ -62,10 +62,12 @@ main {
 
 .drag-btn {
   cursor: grab;
+  margin-left: -80px;
+  bottom: 80px;
   background: transparent;
   border: none;
-  font-size: 18px;
-  margin-right: 5px;
+  font-size: 3rem;
+  position: absolute;
 }
 .drag-btn:active {
   cursor: grabbing;
@@ -90,7 +92,7 @@ margin-top: 10px;
   text-indent: 20px;
 }
 
-.socialLinkDiv i {
+.socialLinkDiv .fa-link,.fa-tag {
   position: absolute;
   margin-left: 10px;
   margin-top: 14px;
