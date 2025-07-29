@@ -11,6 +11,8 @@ import { Subject } from 'rxjs';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../../auth.service';
 import { User } from '../../../models/user.model';
+import Swal from 'sweetalert2';
+import Sortable from 'sortablejs';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -28,6 +30,16 @@ export class DashboardComponent implements OnInit{
     this.carregarSocialLinks();
     this.carregarUsuarios();
   }
+
+  ngAfterViewInit() {
+    const el = document.getElementById('links-sociais');
+    if (el) {
+      new Sortable(el, {
+        animation: 150,
+        ghostClass: 'dragging'
+      });
+    }
+  }
   sociallinkDivShowing:boolean=true;
 
   socialLinks: SocialLinks[]=[];
@@ -39,7 +51,7 @@ export class DashboardComponent implements OnInit{
     icon: '',
     user_id: ''
   };
-
+  mostrarJanelaExclusao:boolean=false;
   debounceTimers: { [key: string]: any } = {};
 
   onFieldChange(socialLink:any) {
@@ -90,11 +102,37 @@ export class DashboardComponent implements OnInit{
       }
   }
 
+  confirmarExclusao(){
+    this.mostrarJanelaExclusao=true;
+  }
+
   apagarSocialLink(id:string | undefined){
+
+    Swal.fire({
+  title: "Tem a certeza que quer excluir este item?",
+  text: "Não será possível reverter esta ação!",
+  // icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  cancelButtonText: "Cancelar",
+  confirmButtonText: "Sim"
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire({
+      title: "Excluído!",
+      text: "O Link foi Excluído com sucesso.",
+      icon: "success"
+    });
+
     this.socialLinkService.excluirSocialLink(id).subscribe(()=>{
       console.log("SocialLink excluído com sucesso!")
       this.carregarSocialLinks();
     })
+  }
+});
+      
+   
   }
 
   criarSocialLink() {
