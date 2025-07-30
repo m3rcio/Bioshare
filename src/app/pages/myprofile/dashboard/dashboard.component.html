@@ -13,17 +13,30 @@
              
              <div *ngFor="let sociallink of socialLinks" id="links-sociais">
                 <div class="socialLinkDiv">
+
                   <button class="drag-btn" title="Arrastar">
                     <img src="assets/icones/grip lines.svg" alt="Ícone SVG" width="40" height="40">
                   </button>
+
                   <button (click)="apagarSocialLink(sociallink.socialLink_id)" class="apagar-btn">  <i class="fas fa-trash"></i></button>
+
                   <button (click)="copiarLink(sociallink.Url)" class="copiar-btn" title="Copiar">
                     <i class="fas fa-copy"></i>
                   </button>
+
+                  <button class="btn-imagem" title="Imagem">
+                    <i class="fas fa-image"></i>
+                  </button>
+
+                  <button class="btn-ligado" title="Ativar">
+                    <i class="fas fa-toggle-on"></i>
+                  </button>
+
                   <div id="title-input-div">
                     <i class="fa-solid fa-tag"></i>
                     <input type="text" placeholder="Título" [(ngModel)]="sociallink.title" (ngModelChange)="onFieldChange(sociallink)">
                   </div>
+
                   <div id="url-input-div">
                     <i class="fas fa-link"></i>
                     <input type="text" placeholder="Url"  [(ngModel)]="sociallink.Url" (ngModelChange)="onFieldChange(sociallink)">

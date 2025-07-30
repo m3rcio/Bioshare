@@ -75,7 +75,7 @@ main {
   transition: 0.2s;
   position: absolute;
   margin-left: 10px;
-   bottom: 10px;
+   bottom: -10px;
 }
 .apagar-btn:active{
    background-color: rgb(209, 32, 32);
@@ -92,6 +92,21 @@ main {
 }
 .drag-btn:active {
   cursor: grabbing;
+}
+
+.btn-imagem,.btn-ligado{
+background: none;
+border: none;
+position: absolute;
+bottom: -10px;
+}
+
+.btn-ligado{
+  margin-left: 40px;
+}
+
+.btn-imagem{
+  margin-left: 60px;
 }
 
 #title-input-div{
