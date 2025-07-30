@@ -20,7 +20,17 @@
 
                   <button (click)="apagarSocialLink(sociallink.socialLink_id)" class="apagar-btn">  <i class="fas fa-trash"></i></button>
 
-                  <button (click)="copiarLink(sociallink.Url)" class="copiar-btn" title="Copiar">
+                  <div id="title-input-div">
+                    <i class="fa-solid fa-tag"></i>
+                    <input type="text" placeholder="Título" [(ngModel)]="sociallink.title" (ngModelChange)="onFieldChange(sociallink)">
+                  </div>
+
+                  <div id="url-input-div">
+                    <i class="fas fa-link"></i>
+                    <input type="text" placeholder="Url"  [(ngModel)]="sociallink.Url" (ngModelChange)="onFieldChange(sociallink)">
+                  </div>
+                  <div class="icones-div">
+                     <button (click)="copiarLink(sociallink.Url)" class="copiar-btn" title="Copiar">
                     <i class="fas fa-copy"></i>
                   </button>
 
@@ -31,15 +41,6 @@
                   <button class="btn-ligado" title="Ativar">
                     <i class="fas fa-toggle-on"></i>
                   </button>
-
-                  <div id="title-input-div">
-                    <i class="fa-solid fa-tag"></i>
-                    <input type="text" placeholder="Título" [(ngModel)]="sociallink.title" (ngModelChange)="onFieldChange(sociallink)">
-                  </div>
-
-                  <div id="url-input-div">
-                    <i class="fas fa-link"></i>
-                    <input type="text" placeholder="Url"  [(ngModel)]="sociallink.Url" (ngModelChange)="onFieldChange(sociallink)">
                   </div>
                 </div>
               </div>                                      

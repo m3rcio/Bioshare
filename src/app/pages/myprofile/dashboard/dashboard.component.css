@@ -74,9 +74,9 @@ main {
   font-size: 16px;
   padding: 5px;
   transition: 0.2s;
-  position: absolute;
-  margin-left: 10px;
-  bottom: 5px;
+  /* position: absolute; */
+  /* margin-left: 10px; */
+  /* bottom: 5px; */
 }
 .apagar-btn:active{
    background-color: rgb(209, 32, 32);
@@ -95,20 +95,28 @@ main {
   cursor: grabbing;
 }
 
+.icones-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid black;
+  bottom: 5px;
+  position: absolute;
+  width: 200px;
+}
+
 .btn-imagem,.btn-ligado{
 background: none;
 border: none;
-position: absolute;
-bottom: 10px;
 }
 
-.btn-ligado{
+/* .btn-ligado{
   margin-left: 40px;
 }
 
 .btn-imagem{
   margin-left: 60px;
-}
+} */
 
 #title-input-div{
 margin-bottom: 10px;
