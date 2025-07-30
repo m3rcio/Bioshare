@@ -99,10 +99,9 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid black;
   bottom: 5px;
   position: absolute;
-  width: 200px;
+  width: 280px;
 }
 
 .btn-imagem,.btn-ligado{
