@@ -57,9 +57,11 @@ main {
   width: 30px;
   height: 30px;
   border: none;
-  background-color: rgb(209, 32, 32);
-  color:white;
+  background-color: rgb(207, 207, 207);
+  color: rgb(0, 0, 0);
   cursor: pointer;
+  position: absolute;
+  margin-left: 240px;
 }
 
 
@@ -67,14 +69,17 @@ main {
   background: none;
   border: none;
   cursor: pointer;
-  color: #555;
+  color: #161616;
   font-size: 16px;
   padding: 5px;
   transition: 0.2s;
+  position: absolute;
+  margin-left: 10px;
+   bottom: 10px;
 }
 .apagar-btn:active{
-  background-color: rgb(207, 207, 207);
-  color: rgb(0, 0, 0);
+   background-color: rgb(209, 32, 32);
+  color:white;
 }
 .drag-btn {
   cursor: grab;
