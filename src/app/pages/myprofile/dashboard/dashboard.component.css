@@ -1,6 +1,4 @@
-body{
-  background-color: rgb(255, 255, 255);
-}
+
 
 h1{
   font-family: Arial;
@@ -30,6 +28,8 @@ main {
   border: none;
   border-radius: 10px;
   padding: 15px;
+  width: 300px;
+  cursor: pointer;
 }
 
 .socialLinkDiv{
@@ -37,9 +37,10 @@ main {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-  padding: 20px 100px 20px 100px;
+  padding: 20px 100px 40px 100px;
   border-radius: 25px;
   background-color: white;
+  border: 2px solid rgb(79, 112, 221);
 }
 
 .socialLinkDiv input{
@@ -75,7 +76,7 @@ main {
   transition: 0.2s;
   position: absolute;
   margin-left: 10px;
-   bottom: -10px;
+  bottom: 5px;
 }
 .apagar-btn:active{
    background-color: rgb(209, 32, 32);
@@ -98,7 +99,7 @@ main {
 background: none;
 border: none;
 position: absolute;
-bottom: -10px;
+bottom: 10px;
 }
 
 .btn-ligado{
