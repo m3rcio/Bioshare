@@ -56,7 +56,6 @@ app.post("/api/signup",async (req,res)=>{
 app.post('/api/login', async (req,res)=>{
   try{
     if(!req.params.nome && !req.params.password){
-      console.log('sem nome');
     }
     const nomeInserido= await User.findOne({nome: req.body.nome});
     if(!nomeInserido){
