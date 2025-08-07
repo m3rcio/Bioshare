@@ -37,7 +37,7 @@ main {
   margin-top: 40px;
   display: flex;
   flex-direction: row;
-  padding: 20px 100px 40px 100px;
+  padding: 20px 150px 20px 100px;
   border-radius: 25px;
   background-color: white;
   border: 2px solid rgb(79, 112, 221);
@@ -82,7 +82,7 @@ main {
 .drag-btn {
   cursor: grab;
   margin-left: -80px;
-  bottom: 80px;
+  bottom: 25px;
   background: transparent;
   border: none;
   font-size: 3rem;
@@ -99,6 +99,7 @@ main {
   position: absolute;
   width: 200px;
   border: 1px solid black;
+  margin-left: 260px;
 }
 
 .btn-imagem,.btn-ligado{
