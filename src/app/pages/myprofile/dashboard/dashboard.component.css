@@ -36,7 +36,7 @@ main {
   position: relative;
   margin-top: 40px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 20px 100px 40px 100px;
   border-radius: 25px;
   background-color: white;
@@ -45,12 +45,14 @@ main {
 
 .socialLinkDiv input{
   width: 100%;
-  padding: 15px 10px 15px 15px;
+  padding: 10px 10px 10px 15px;
   border: none;
-  background-color: #cfcfcf;
   color: rgb(29, 29, 29);
-  border-radius: 20px;
   text-indent: 15px;
+}
+
+.socialLinkDiv input:focus{
+  border-bottom: 1px solid black;
 }
 
 .apagar-btn{
@@ -61,8 +63,6 @@ main {
   background-color: rgb(207, 207, 207);
   color: rgb(0, 0, 0);
   cursor: pointer;
-  position: absolute;
-  margin-left: 240px;
 }
 
 
@@ -74,9 +74,6 @@ main {
   font-size: 16px;
   padding: 5px;
   transition: 0.2s;
-  /* position: absolute; */
-  /* margin-left: 10px; */
-  /* bottom: 5px; */
 }
 .apagar-btn:active{
    background-color: rgb(209, 32, 32);
@@ -99,10 +96,9 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-items: space-around;
-  bottom: 5px;
   position: absolute;
-  width: 280px;
+  width: 200px;
+  border: 1px solid black;
 }
 
 .btn-imagem,.btn-ligado{
@@ -112,18 +108,18 @@ border: none;
 
 /* .btn-ligado{
   margin-left: 40px;
-}
-
-.btn-imagem{
-  margin-left: 60px;
 } */
 
+.btn-imagem{
+  margin-right: 13px;
+} 
+
 #title-input-div{
-margin-bottom: 10px;
+margin-bottom: 5px;
 }
 
 #url-input-div{
-margin-top: 10px;
+margin-top: 5px;
 }
 #url-input-div input{
   text-indent: 20px;

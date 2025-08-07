@@ -13,12 +13,11 @@ import { AuthService } from '../../../../auth.service';
 import { User } from '../../../models/user.model';
 import Swal from 'sweetalert2';
 import Sortable from 'sortablejs';
-import { LucideAngularModule, FileIcon,Image } from 'lucide-angular';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,FormsModule,LucideAngularModule],
+  imports: [ReactiveFormsModule,CommonModule,FormsModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -44,8 +43,6 @@ export class DashboardComponent implements OnInit{
     }
   }
   sociallinkDivShowing:boolean=true;
-  readonly FileIcon = FileIcon;
-  readonly Image = Image;
   socialLinks: SocialLinks[]=[];
   users: User[]=[];
   socialLink: SocialLinks = {
