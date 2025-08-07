@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'linktree-clone' title`, () => {
+  it(`should have the 'bioshare' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('linktree-clone');
+    expect(app.title).toEqual('bioshare');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, linktree-clone');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, bioshare');
   });
 });

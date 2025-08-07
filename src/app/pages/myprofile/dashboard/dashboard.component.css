@@ -99,6 +99,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-items: space-around;
   bottom: 5px;
   position: absolute;
   width: 280px;
