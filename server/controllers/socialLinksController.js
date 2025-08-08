@@ -30,7 +30,6 @@ const getAllSocialLinks = async (req, res) => {
 
         res.json(linksMapeados);
         console.log(linksMapeados[6].socialLink_id)
-        console.log("ewdew")
     } catch (error) {
         res.status(500).json({ error: "Internal server error" });
     }
