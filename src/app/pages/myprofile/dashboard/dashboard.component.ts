@@ -1,23 +1,20 @@
-import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { RouterOutlet,RouterLink } from '@angular/router';
 import { SocialLinks } from '../../../models/sociallinks.model';
 import { SocialLinkService } from '../../../services/socialLink.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../../auth.service';
 import { User } from '../../../models/user.model';
 import Swal from 'sweetalert2';
 import Sortable from 'sortablejs';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,FormsModule],
+  imports: [ReactiveFormsModule,CommonModule,FormsModule,MatSlideToggleModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -42,13 +39,15 @@ export class DashboardComponent implements OnInit{
       });
     }
   }
+
+  isOn= false;
   sociallinkDivShowing:boolean=true;
   socialLinks: SocialLinks[]=[];
   users: User[]=[];
   socialLink: SocialLinks = {
     title: ' ',
     Url: ' ',
-    isActive: true,
+    isActive: false,
     icon: '',
     user_id: ''
   };

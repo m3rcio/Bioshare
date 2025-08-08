@@ -39,9 +39,11 @@
                     <i class="fas fa-copy"></i>
                   </button>
 
-                  <button class="btn-ligado" title="Ativar">
+                  <!-- <button class="btn-ligado" title="Ativar">
                     <i class="fas fa-toggle-on"></i>
-                  </button>
+                  </button> -->
+                  <mat-slide-toggle (toggleChange)="sociallink.isActive? true: false">
+</mat-slide-toggle>
 
                    <button (click)="apagarSocialLink(sociallink.socialLink_id)" class="apagar-btn">  <i class="fas fa-trash"></i></button>
                     
