@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit{
     }
   }
 
-  isOn= false;
+  isToggled: boolean = false; 
   sociallinkDivShowing:boolean=true;
   socialLinks: SocialLinks[]=[];
   users: User[]=[];
@@ -115,6 +115,11 @@ export class DashboardComponent implements OnInit{
       );
     } else {
       }
+  }
+
+  trocarEstadoLink(id:string){
+    
+    this.isToggled? this.socialLink.isActive=true : this.socialLink.isActive=false
   }
 
   confirmarExclusao(){
