@@ -118,7 +118,7 @@ export class DashboardComponent implements OnInit{
   }
 
   trocarEstadoLink(id:string){
-    
+    this.socialLinkService
     this.isToggled? this.socialLink.isActive=true : this.socialLink.isActive=false
   }
 
