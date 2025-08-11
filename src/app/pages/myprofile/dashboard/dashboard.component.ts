@@ -117,10 +117,19 @@ export class DashboardComponent implements OnInit{
       }
   }
 
-  trocarEstadoLink(id:string){
-    this.socialLinkService
-    this.isToggled? this.socialLink.isActive=true : this.socialLink.isActive=false
-  }
+mostrarChecked(event: any) {
+  alert(`Valor do checked: ${event.checked}`);
+}
+
+trocarEstadoLink(id:string | undefined, novoValor: boolean) {
+  
+alert(novoValor)
+  this.socialLinkService.atualizarSocialLinkisActive(id,novoValor )
+  .subscribe({
+      next: () => alert(novoValor),
+      error: err => console.error('Erro ao salvar:', err)
+    });
+}
 
   confirmarExclusao(){
     this.mostrarJanelaExclusao=true;

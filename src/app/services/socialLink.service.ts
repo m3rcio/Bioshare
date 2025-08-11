@@ -22,6 +22,13 @@ import { AuthService } from "../../auth.service";
       const apiUrl = `${this.apiBaseUrl}/social-links/${SocialLink_id}`;
       return this.http.put<SocialLinks>(apiUrl, SocialLinks);
     }
+
+    atualizarSocialLinkisActive(id: string | undefined, novoValor:boolean): Observable<any> {
+      const apiUrl = `${this.apiBaseUrl}/social-links/${id}/toggle`;alert("novo valor "+novoValor)
+      return this.http.patch(apiUrl,{novoValor});
+    }
+ 
+    
   
     excluirSocialLink(idSocialLink: string | undefined): Observable<void> {
       const apiUrl = `${this.apiBaseUrl}/social-links/${idSocialLink}`;
