@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit{
     title: ' ',
     Url: ' ',
     isActive: false,
-    icon: '',
+    icon: 'fas fa-image',
     user_id: ''
   };
 
@@ -70,6 +70,30 @@ export class DashboardComponent implements OnInit{
       }
     });
   }
+
+//   abrirJanelaIcons(socialLinkId: string | undefined): void {
+//   let dialogRef = this.dialog.open(JanelaIconsComponent, {
+//     width: '250px'
+//   });
+
+//   dialogRef.afterClosed().subscribe((iconeEscolhido: string) => {
+//     if (iconeEscolhido) {
+//       // Chama o backend para atualizar o ícone
+//       this.socialLinkService.atualizarSocialLinkIcon(socialLinkId, iconeEscolhido)
+//         .subscribe({
+//           next: (res) => {
+//             console.log('Ícone atualizado:', res);
+//             // Aqui você pode atualizar a UI localmente, se necessário
+//           },
+//           error: (err) => {
+//             console.error('Erro ao atualizar ícone:', err);
+//           }
+//         });
+//     }
+//   });
+// }
+
+
   mostrarJanelaExclusao:boolean=false;
   debounceTimers: { [key: string]: any } = {};
 
