@@ -18,8 +18,8 @@
                     <img src="assets/icones/grip lines.svg" alt="Ícone SVG" width="40" height="40">
                   </button>
 
-                   <button class="btn-imagem" title="Imagem" (click)="abrirJanelaIcons()" [(ngModel)]="sociallink.icon">
-                    <i class={{link_icon}} style="color:{{link_color}};"></i>
+                   <button class="btn-imagem" title="Imagem" (click)="abrirJanelaIcons(sociallink.socialLink_id)" [(ngModel)]="sociallink.icon">
+                    <i class={{sociallink.icon}}></i>
                   </button>
                   </div>
                  

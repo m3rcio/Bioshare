@@ -56,7 +56,7 @@ export class DashboardComponent implements OnInit{
     user_id: ''
   };
 
-  abrirJanelaIcons(): void {
+  abrirJanelaIcons(id:string | undefined): void {
     let dialogRef = this.dialog.open(JanelaIconsComponent, {
       width: '250px',
       data: { iconeAtual: this.link_icon, corAtual:this.link_color}
@@ -67,6 +67,11 @@ export class DashboardComponent implements OnInit{
       if (result) {
         this.link_icon = result.classe;
         this.link_color = result.cor;
+        this.socialLinkService.atualizarSocialLinkIcon(id,this.link_icon).subscribe({
+          next:(res)=>{console.log('Ícone atualizado:', res);},error: (err) => {
+             console.error('Erro ao atualizar ícone:', err);
+           }
+        })
       }
     });
   }
