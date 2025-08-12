@@ -9,8 +9,9 @@ import { AuthService } from '../../../../auth.service';
 import { User } from '../../../models/user.model';
 import Swal from 'sweetalert2';
 import Sortable from 'sortablejs';
+import { MatDialog } from '@angular/material/dialog';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
+import { JanelaIconsComponent } from '../../../components/icons/janelaIcons.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -21,9 +22,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 export class DashboardComponent implements OnInit{
 
   @Input() sidebarOpen = false;
+
   constructor(private socialLinkService:SocialLinkService,
     private userService:UserService,
-    private authService:AuthService){}
+    private authService:AuthService,public dialog: MatDialog){}
+
   ngOnInit(): void {
     this.carregarSocialLinks();
     this.carregarUsuarios();
@@ -51,6 +54,17 @@ export class DashboardComponent implements OnInit{
     icon: '',
     user_id: ''
   };
+
+  abrirJanelaIcons(): void {
+    let dialogRef = this.dialog.open(JanelaIconsComponent, {
+      width: '250px',
+      // data: { name: this.name, animal: this.animal }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.animal = result;
+    });
+  }
   mostrarJanelaExclusao:boolean=false;
   debounceTimers: { [key: string]: any } = {};
 
@@ -117,10 +131,6 @@ export class DashboardComponent implements OnInit{
       }
   }
 
-
-  abrirJanelaIcons(){
-    
-  }
 
 trocarEstadoLink(id:string | undefined, novoValor: boolean) {
   
