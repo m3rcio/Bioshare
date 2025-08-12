@@ -2,10 +2,11 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgFor } from '@angular/common';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @Component({
   standalone:true,
   selector: 'app-janela-icons-dialog',
-  imports:[MatDialogModule, MatFormFieldModule,NgFor],
+  imports:[MatDialogModule, MatFormFieldModule,NgFor,MatTooltipModule],
   templateUrl: 'janela-icons.component.html',
   styleUrl:'janela-icons.component.css'
 })
@@ -17,6 +18,13 @@ export class JanelaIconsComponent {
 
   onCancel(): void {
     this.dialogRef.close();
+  }
+
+  escolherIcone(icon:{classe: string, cor: string}){
+     this.dialogRef.close({
+      classe: icon.classe,
+      cor: icon.cor
+    });
   }
 
   icones_sociais = [

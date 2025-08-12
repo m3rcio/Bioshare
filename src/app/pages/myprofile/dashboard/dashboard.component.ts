@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit{
   }
 
   link_icon:string="fas fa-image";
+  link_color="#292929ff";
   sociallinkDivShowing:boolean=true;
   socialLinks: SocialLinks[]=[];
   users: User[]=[];
@@ -58,11 +59,15 @@ export class DashboardComponent implements OnInit{
   abrirJanelaIcons(): void {
     let dialogRef = this.dialog.open(JanelaIconsComponent, {
       width: '250px',
-      // data: { name: this.name, animal: this.animal }
+      data: { iconeAtual: this.link_icon, corAtual:this.link_color}
+      
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.animal = result;
+      if (result) {
+        this.link_icon = result.classe;
+        this.link_color = result.cor;
+      }
     });
   }
   mostrarJanelaExclusao:boolean=false;
