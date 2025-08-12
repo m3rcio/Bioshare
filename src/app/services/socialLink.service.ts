@@ -25,7 +25,7 @@ import { AuthService } from "../../auth.service";
 
     atualizarSocialLinkisActive(id: string | undefined, novoValor:boolean): Observable<any> {
       const apiUrl = `${this.apiBaseUrl}/social-links/${id}/toggle`;alert("novo valor "+novoValor)
-      return this.http.patch(apiUrl,{novoValor});
+      return this.http.patch(apiUrl,{isActive:novoValor});
     }
  
     
