@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit{
     }
   }
 
-  isToggled: boolean = false; 
+  link_icon:string="fas fa-image";
   sociallinkDivShowing:boolean=true;
   socialLinks: SocialLinks[]=[];
   users: User[]=[];
@@ -117,16 +117,16 @@ export class DashboardComponent implements OnInit{
       }
   }
 
-mostrarChecked(event: any) {
-  alert(`Valor do checked: ${event.checked}`);
-}
+
+  abrirJanelaIcons(){
+    
+  }
 
 trocarEstadoLink(id:string | undefined, novoValor: boolean) {
   
-alert(novoValor)
   this.socialLinkService.atualizarSocialLinkisActive(id,novoValor )
   .subscribe({
-      next: () => alert(novoValor),
+      next: () => console.log("valor do link é: "+novoValor),
       error: err => console.error('Erro ao salvar:', err)
     });
 }
