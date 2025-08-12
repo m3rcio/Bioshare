@@ -6,7 +6,8 @@ import { NgFor } from '@angular/common';
   standalone:true,
   selector: 'app-janela-icons-dialog',
   imports:[MatDialogModule, MatFormFieldModule,NgFor],
-  templateUrl: 'janela-icons.component.html'
+  templateUrl: 'janela-icons.component.html',
+  styleUrl:'janela-icons.component.css'
 })
 export class JanelaIconsComponent {
 

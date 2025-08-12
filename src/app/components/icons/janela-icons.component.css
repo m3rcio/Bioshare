@@ -1,0 +1,10 @@
+.icons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto); 
+  gap: 20px; 
+  justify-content: center; 
+}
+
+i{
+  cursor: pointer;
+}
