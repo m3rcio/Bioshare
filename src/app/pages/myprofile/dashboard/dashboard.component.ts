@@ -53,7 +53,8 @@ export class DashboardComponent implements OnInit{
     Url: ' ',
     isActive: false,
     icon: 'fas fa-image',
-    user_id: ''
+    user_id: '',
+    icon_color:'#1b1a1aff'
   };
 
   abrirJanelaIcons(id:string | undefined): void {
@@ -67,7 +68,7 @@ export class DashboardComponent implements OnInit{
       if (result) {
         this.link_icon = result.classe;
         this.link_color = result.cor;
-        this.socialLinkService.atualizarSocialLinkIcon(id,this.link_icon).subscribe({
+        this.socialLinkService.atualizarSocialLinkIconAndColor(id,this.link_icon,this.link_color).subscribe({
           next:()=>{ this.carregarSocialLinks(); },error: (err) => {
              console.error('Erro ao atualizar ícone:', err);
            }
@@ -195,7 +196,8 @@ trocarEstadoLink(id:string | undefined, novoValor: boolean) {
           Url: '',
           isActive: false,
           icon: '',
-          user_id: ''
+          user_id: '',
+          icon_color:'#1b1a1aff'
         };
         this.carregarSocialLinks();
       },

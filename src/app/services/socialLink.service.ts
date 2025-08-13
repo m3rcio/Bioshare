@@ -28,9 +28,9 @@ import { AuthService } from "../../auth.service";
       return this.http.patch(apiUrl,{isActive:novoValor});
     }
  
-    atualizarSocialLinkIcon(id: string | undefined, novoValor:string): Observable<any> {
+    atualizarSocialLinkIconAndColor(id: string | undefined, novoValor:string,novaCor:string): Observable<any> {
       const apiUrl = `${this.apiBaseUrl}/social-links/${id}/icon`;
-      return this.http.patch(apiUrl,{icon:novoValor});
+      return this.http.patch(apiUrl,{icon:novoValor,icon_color:novaCor});
     }
   
     excluirSocialLink(idSocialLink: string | undefined): Observable<void> {

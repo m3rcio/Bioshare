@@ -13,13 +13,13 @@
              
              <div *ngFor="let sociallink of socialLinks" id="links-sociais">
                 <div class="socialLinkDiv">
-                  <div>
+                  <div class="row">
                      <button class="drag-btn" title="Arrastar">
                     <img src="assets/icones/grip lines.svg" alt="Ícone SVG" width="40" height="40">
                   </button>
 
                    <button class="btn-imagem" title="Imagem" (click)="abrirJanelaIcons(sociallink.socialLink_id)">
-                    <i class={{sociallink.icon}}></i>
+                    <i class={{sociallink.icon}} [style.color]="sociallink.icon_color"></i>
                   </button>
                   </div>
                  
