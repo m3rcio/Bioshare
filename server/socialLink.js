@@ -33,7 +33,12 @@ const socialLinkSchema = new mongoose.Schema({
   icon: {
     type: String,
     required: false,
+    default: 'fas fa-image'
   },
+  icon_color: {
+     type: String,
+    default: '#1b1a1aff'
+   },
   user_id: {
     type: String,
     required: true,
