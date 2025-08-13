@@ -12,10 +12,11 @@ import Sortable from 'sortablejs';
 import { MatDialog } from '@angular/material/dialog';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { JanelaIconsComponent } from '../../../components/icons/janelaIcons.component';
+import { PreviewWindowComponent } from '../../../components/previewWindow/previewWindow.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,FormsModule,MatSlideToggleModule],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, MatSlideToggleModule, PreviewWindowComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })

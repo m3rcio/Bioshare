@@ -1,0 +1,24 @@
+<div class="phone-frame">
+  <div class="phone-screen">
+
+    <!-- Foto de perfil -->
+    <div class="profile-section">
+      <!-- <img [src]="usuario.fotoPerfil" alt="Foto de perfil" class="profile-pic" />
+      <h2>{{ usuario.nome }}</h2>
+      <p class="bio">{{ usuario.bio }}</p> -->
+    </div>
+
+    <!-- Lista de links -->
+    <div class="links-section">
+      <div 
+        class="link-item"
+        *ngFor="let link of socialLinks"
+        (click)="abrirLink(link.Url)"
+      >
+        <i [class]="link.icon" [style.color]="link.icon_color"></i>
+        <span>{{ link.title }}</span>
+      </div>
+    </div>
+
+  </div>
+</div>
