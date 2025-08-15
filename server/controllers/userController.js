@@ -1,5 +1,38 @@
 const User = require("../user.js");
+const multer = require("multer");
+const path=require("path");
 
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); 
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, Date.now() + ext); 
+  }
+});
+
+ const upload = multer({ storage });
+
+ const updateProfilePicture = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const filePath = `/uploads/${req.file.filename}`;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { profile_picture: filePath },
+      { new: true }
+    );
+
+    return res.json(updatedUser);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+module.exports = { upload, updateProfilePicture };
 
 const getAllUsers = async (req, res) => {
     try {
@@ -7,7 +40,7 @@ const getAllUsers = async (req, res) => {
         res.json(users);
     } catch (error) {
         console.error("Error in getAllUsers:", error); 
-        res.status(500).json({ error: error.message });
+        return res.status(500).json({ error: error.message });
     }
 };
 
@@ -15,9 +48,9 @@ const deleteUser = async (req, res) => {
     try {
         const { user_id } = req.params;
         await User.findByIdAndDelete(user_id);
-        res.json({ message: "Usuário excluido com sucesso" });
+        return res.json({ message: "Usuário excluido com sucesso" });
     } catch (error) {
-        res.status(500).json({ error: "erro do servidor" });
+        return res.status(500).json({ error: "erro do servidor" });
     }
 };
 
@@ -31,7 +64,7 @@ const updateUser = async (req,res)=>{
                 message:'usuário não encontrado'
             });
         }
-        res.json({message:'usuário atualizado com sucesso!',user: updatedUser});
+        res.json({message:'usuário atualizado com sucesso!',user: updateUser});
     }catch (error){
         res.status(500).json({error:'erro no servidor!'});
     }

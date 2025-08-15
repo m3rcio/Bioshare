@@ -13,6 +13,10 @@ const loginSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  profile_picture:{
+    type:String,
+    default:"/uploads/profile_picture.webp"
+  }
 });
 
 const User = mongoose.model("User", loginSchema);
