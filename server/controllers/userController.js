@@ -3,22 +3,15 @@ const multer = require("multer");
 const path=require("path");
 
 
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); 
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, Date.now() + ext); 
-  }
-});
-
- const upload = multer({ storage });
-
  const updateProfilePicture = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const userId = req.params.user_id;
+
+    // Se não houver arquivo enviado
+    if (!req.file) {
+      return res.status(400).json({ error: "Nenhuma imagem enviada" });
+    }
+
     const filePath = `/uploads/${req.file.filename}`;
 
     const updatedUser = await User.findByIdAndUpdate(
@@ -27,12 +20,13 @@ const storage = multer.diskStorage({
       { new: true }
     );
 
-    return res.json(updatedUser);
+    res.json(updatedUser);
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
-module.exports = { upload, updateProfilePicture };
+
+module.exports = { updateProfilePicture };
 
 const getAllUsers = async (req, res) => {
     try {
