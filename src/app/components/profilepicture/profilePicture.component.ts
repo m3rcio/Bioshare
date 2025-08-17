@@ -36,7 +36,8 @@ export class ProfilePictureComponent implements OnInit {
 
   upload() {
     if (!this.selectedFile) return;
-    this.userService.uploadProfilePicture(this.userId, this.selectedFile)
+    let usuarioLogadoId=this.authService.getUserId();
+    this.userService.uploadProfilePicture(usuarioLogadoId, this.selectedFile)
       .subscribe(res => {
         this.currentPicture = `http://localhost:3000${res.profile_picture}`;
         this.previewUrl = null; 
