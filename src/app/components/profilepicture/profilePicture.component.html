@@ -1,0 +1,7 @@
+<div class="profile-container">
+  <img [src]="previewUrl || currentPicture" class="profile-img">
+
+  <input type="file" accept="image/*" (change)="onFileSelected($event)">
+  
+  <button (click)="upload()" [disabled]="!selectedFile">Salvar Foto</button>
+</div>

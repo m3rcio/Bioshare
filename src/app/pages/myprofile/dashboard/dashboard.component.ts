@@ -13,10 +13,11 @@ import { MatDialog } from '@angular/material/dialog';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { JanelaIconsComponent } from '../../../components/icons/janelaIcons.component';
 import { PreviewWindowComponent } from '../../../components/previewWindow/previewWindow.component';
+import { ProfilePictureComponent } from "../../../components/profilepicture/profilePicture.component";
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, FormsModule, MatSlideToggleModule, PreviewWindowComponent],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule, MatSlideToggleModule, PreviewWindowComponent, ProfilePictureComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
