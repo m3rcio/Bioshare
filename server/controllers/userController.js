@@ -1,4 +1,4 @@
-const User = require("../user.js");
+const User = require("../user");
 const multer = require("multer");
 const path=require("path");
 
@@ -20,13 +20,12 @@ const path=require("path");
       { new: true }
     );
 
-    res.json(updatedUser);
+    return res.json(updatedUser);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
-module.exports = { updateProfilePicture };
 
 const getAllUsers = async (req, res) => {
     try {
@@ -77,4 +76,4 @@ const getUsersById = async (req, res) => {
     }
 };
 
-module.exports = {  getAllUsers, deleteUser,updateUser,getUsersById };
+module.exports = {  getAllUsers, deleteUser,updateUser,getUsersById, updateProfilePicture };
