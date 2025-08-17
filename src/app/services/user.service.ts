@@ -36,4 +36,10 @@ import {User} from "../models/user.model";
           return this.http.get<User>(apiUrl);
         }
 
+         uploadProfilePicture(userId: string, file: File) {
+         const formData = new FormData();
+         formData.append('profile_picture', file);
+         return this.http.put<any>(`${this.apiBaseUrl}/${userId}/profile-picture`, formData);
+  }
+
   }
