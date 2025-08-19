@@ -12,15 +12,31 @@ const path=require("path");
       return res.status(400).json({ error: "Nenhuma imagem enviada" });
     }
 
-    const filePath = `/uploads/${req.file.filename}`;
+    const filePath = `/uploads/${req.file.fileName}`;
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { profile_picture: filePath },
+      { profile_picture: fileName },
       { new: true }
     );
 
     return res.json(updatedUser);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+
+const getProfilePicture = async (req, res) => {
+  try {
+    const userId = req.params.user_id; 
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
+    }
+
+    return res.json({ profile_picture: res.profile_picture || "profile_picture.webp" });
+   
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -76,4 +92,4 @@ const getUsersById = async (req, res) => {
     }
 };
 
-module.exports = {  getAllUsers, deleteUser,updateUser,getUsersById, updateProfilePicture };
+module.exports = {  getAllUsers, deleteUser,updateUser,getUsersById, updateProfilePicture,getProfilePicture };
