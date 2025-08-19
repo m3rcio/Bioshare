@@ -9,23 +9,20 @@ import { AuthService } from '../../../auth.service';
   styleUrls: ['./profilePicture.component.css']
 })
 export class ProfilePictureComponent implements OnInit {
-  userId = 'ID_DO_USUARIO'; // pegar do login
   currentPicture!: string;
   selectedFile!: File;
   previewUrl: any = null;
 
   constructor(private userService: UserService, private sanitizer: DomSanitizer,private authService: AuthService) {}
 
-  ngOnInit() {
-    this.loadUser();
-  }
 
-  loadUser() {
+  ngOnInit() {
     let usuarioLogadoId=this.authService.getUserId();
-    this.userService.getUsersById(usuarioLogadoId).subscribe(user => {
-      this.currentPicture = `http://localhost:3000${user.profile_picture}`;
-    });
-  }
+this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
+  this.currentPicture = `http://localhost:3000/uploads/${res.profile_picture}`; alert(this.currentPicture)
+});
+
+}
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -39,7 +36,7 @@ export class ProfilePictureComponent implements OnInit {
     let usuarioLogadoId=this.authService.getUserId();
     this.userService.uploadProfilePicture(usuarioLogadoId, this.selectedFile)
       .subscribe(res => {
-        this.currentPicture = `http://localhost:3000${res.profile_picture}`;
+        this.currentPicture = `http://localhost:3000/uploads/${res.profile_picture}`;
         this.previewUrl = null; 
       });
   }
