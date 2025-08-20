@@ -19,11 +19,11 @@ export class ProfilePictureComponent implements OnInit {
   ngOnInit() {
     let usuarioLogadoId=this.authService.getUserId();
 this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
-  // this.currentPicture = `http://localhost:3000/uploads/${res.profile_picture}`; alert(this.currentPicture)
-  this.currentPicture = `${res.profile_picture}`; alert(this.currentPicture)
+  this.currentPicture = `${res.profile_picture}`; 
 });
 
 }
+
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -37,7 +37,7 @@ this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
     let usuarioLogadoId=this.authService.getUserId();
     this.userService.uploadProfilePicture(usuarioLogadoId, this.selectedFile)
       .subscribe(res => {
-        this.currentPicture = `http://localhost:3000${res.profile_picture}`; alert(this.currentPicture)
+        this.currentPicture = `http://localhost:3000${res.profile_picture}`;
         this.previewUrl = null; 
       });
   }
