@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../../auth.service';
-import { NgIf } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile-picture',
   templateUrl: './profilePicture.component.html',
-  styleUrls: ['./profilePicture.component.css'],
-  imports:[NgIf]
+  styleUrls: ['./profilePicture.component.css']
 })
 export class ProfilePictureComponent implements OnInit {
   currentPicture!: string;
@@ -28,20 +27,54 @@ this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
 
 
   onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = e => this.previewUrl = this.sanitizer.bypassSecurityTrustUrl(reader.result as string);
-    reader.readAsDataURL(this.selectedFile!);
-  }
+  this.selectedFile = event.target.files[0];
+  if (!this.selectedFile) return;
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    this.previewUrl = reader.result as string;
+
+    // Abre SweetAlert para confirmar
+    Swal.fire({
+      title: 'Usar esta foto de perfil?',
+      imageUrl: this.previewUrl,
+      imageAlt: 'Preview da foto',
+      showCancelButton: true,
+      imageWidth: 200,
+      customClass: {
+      image: 'swal2-profile-img'},
+      confirmButtonText: 'Sim, salvar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.upload(); 
+      } else {
+        this.selectedFile = null;
+        this.previewUrl = null;
+      }
+    });
+  };
+
+  reader.readAsDataURL(this.selectedFile);
+}
+
 
   upload() {
-    if (!this.selectedFile) return;
-    let usuarioLogadoId=this.authService.getUserId();
-    this.userService.uploadProfilePicture(usuarioLogadoId, this.selectedFile)
-      .subscribe(res => {
-        this.currentPicture = `http://localhost:3000${res.profile_picture}`;
-        this.previewUrl = null; 
-        this.selectedFile = null;
+  if (!this.selectedFile) return;
+  let usuarioLogadoId = this.authService.getUserId();
+
+  this.userService.uploadProfilePicture(usuarioLogadoId, this.selectedFile)
+    .subscribe(res => {
+      this.currentPicture = `http://localhost:3000${res.profile_picture}`;
+      this.previewUrl = null;
+      this.selectedFile = null;
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Foto de perfil atualizada!',
+        timer: 2000,
+        showConfirmButton: false
       });
-  }
+    });
+}
 }
