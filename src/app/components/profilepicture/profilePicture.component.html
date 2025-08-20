@@ -5,5 +5,5 @@
     <input type="file" accept="image/*" (change)="onFileSelected($event)" class="fileInput">
   </div>
 
-  <button (click)="upload()" [disabled]="!selectedFile">Salvar Foto</button>
+  <button *ngIf="selectedFile" (click)="upload()">Salvar Foto</button>
 </div>

@@ -22,3 +22,12 @@
   opacity: 0;   
   cursor: pointer;
 }
+
+.btnUpload{
+  border:none;
+  border-radius: 2px;
+  background-color: rgb(72, 114, 230);
+  padding: 5px;
+  cursor: pointer;
+  color:white;
+}

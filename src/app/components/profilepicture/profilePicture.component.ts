@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../../auth.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-profile-picture',
   templateUrl: './profilePicture.component.html',
-  styleUrls: ['./profilePicture.component.css']
+  styleUrls: ['./profilePicture.component.css'],
+  imports:[NgIf]
 })
 export class ProfilePictureComponent implements OnInit {
   currentPicture!: string;
-  selectedFile!: File;
+  selectedFile: File | null=null;
   previewUrl: any = null;
 
   constructor(private userService: UserService, private sanitizer: DomSanitizer,private authService: AuthService) {}
@@ -29,7 +31,7 @@ this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
     this.selectedFile = event.target.files[0];
     const reader = new FileReader();
     reader.onload = e => this.previewUrl = this.sanitizer.bypassSecurityTrustUrl(reader.result as string);
-    reader.readAsDataURL(this.selectedFile);
+    reader.readAsDataURL(this.selectedFile!);
   }
 
   upload() {
@@ -39,6 +41,7 @@ this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
       .subscribe(res => {
         this.currentPicture = `http://localhost:3000${res.profile_picture}`;
         this.previewUrl = null; 
+        this.selectedFile = null;
       });
   }
 }
