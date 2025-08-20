@@ -34,16 +34,31 @@ export class DashboardComponent implements OnInit{
     this.carregarUsuarios();
   }
 
+
+
   ngAfterViewInit() {
-    const el = document.getElementById('links-sociais');
-    if (el) {
-      new Sortable(el, {
-        animation: 150,
-        handle: '.drag-btn',
-        ghostClass: 'dragging'
-      });
-    }
+    // este código permite que cada link possa ser reorganizado de acordo a como foi arrastado 
+  const el = document.getElementById('links-sociais');
+  if (el) {
+    new Sortable(el, {
+      animation: 150,
+      handle: '.drag-btn',
+      ghostClass: 'dragging',
+      onEnd: (event: any) => {
+        // Índices antigo e novo
+        const oldIndex = event.oldIndex;
+        const newIndex = event.newIndex;
+
+        if (oldIndex !== newIndex && oldIndex != null && newIndex != null) {
+          // remove o item da posição antiga
+          const movedItem = this.socialLinks.splice(oldIndex, 1)[0];
+          // insere na nova posição
+          this.socialLinks.splice(newIndex, 0, movedItem);
+        }
+      }
+    });
   }
+}
 
   link_icon:string="fas fa-image";
   link_color="#292929ff";
@@ -135,6 +150,8 @@ export class DashboardComponent implements OnInit{
   });
     }
   }
+
+  
   salvarSocialLink(socialLink: SocialLinks) {
     if (socialLink.socialLink_id) { 
       this.socialLinkService.atualizarSocialLink(socialLink.socialLink_id,socialLink).subscribe(
