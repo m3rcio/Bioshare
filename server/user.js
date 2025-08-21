@@ -16,7 +16,13 @@ const loginSchema = new mongoose.Schema({
   profile_picture:{
     type:String,
     default:"/uploads/profile_picture.webp"
-  }
+  },
+    bio:{
+      type: String,
+      default:'Edite a sua Bio',
+      required:false
+    }
+  
 });
 
 const User = mongoose.model("User", loginSchema);
