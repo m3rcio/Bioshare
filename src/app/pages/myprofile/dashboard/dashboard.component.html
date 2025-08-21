@@ -2,7 +2,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
     <div>
       <app-profile-picture></app-profile-picture>
-      <label></label>
+      <div class="userDataDiv">
+        <label style="margin-bottom:0;">{{'@' + usuarioLogado?.nome}}</label><br>
+        <input type="text" placeholder={{usuarioLogado?.bio}} class="bioInput">
+      </div>
         <button type="button" class="adicionar-link" (click)="criarSocialLink()">
           Adicionar Link
         </button>

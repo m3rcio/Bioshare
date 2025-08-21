@@ -36,7 +36,8 @@ export class PreviewWindowComponent implements OnInit {
     nome:'',
     password:'',
     email: '',
-    profile_picture:''
+    profile_picture:'',
+    bio:''
 }
 
   carregarSocialLinks(){

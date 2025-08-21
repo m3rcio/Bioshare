@@ -4,5 +4,6 @@ export interface User
     nome:string,
     password:string,
     email: string,
-    profile_picture: string
+    profile_picture: string,
+    bio:string
 }

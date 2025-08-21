@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
     this.carregarSocialLinks();
     this.carregarUsuarios();
+    this.loadLoggedUserData()
   }
 
 
@@ -65,6 +66,7 @@ export class DashboardComponent implements OnInit{
   sociallinkDivShowing:boolean=true;
   socialLinks: SocialLinks[]=[];
   users: User[]=[];
+  usuarioLogado: any;
   socialLink: SocialLinks = {
     title: ' ',
     Url: ' ',
@@ -73,6 +75,18 @@ export class DashboardComponent implements OnInit{
     user_id: '',
     icon_color:'#1b1a1aff'
   };
+
+
+  loadLoggedUserData(){
+    const user_id=this.authService.getUserId()
+    this.userService.getUsersById(user_id).subscribe({
+      next:(user: User)=>{
+        this.usuarioLogado=user;
+      },error:(err)=>{
+        console.error(err);
+      }
+    })
+  }
 
   abrirJanelaIcons(id:string | undefined): void {
     let dialogRef = this.dialog.open(JanelaIconsComponent, {
@@ -151,7 +165,7 @@ export class DashboardComponent implements OnInit{
     }
   }
 
-  
+
   salvarSocialLink(socialLink: SocialLinks) {
     if (socialLink.socialLink_id) { 
       this.socialLinkService.atualizarSocialLink(socialLink.socialLink_id,socialLink).subscribe(
