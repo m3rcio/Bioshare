@@ -3,9 +3,9 @@
 
     <!-- Foto de perfil -->
     <div class="profile-section">
-      <!-- <img [src]="usuario.fotoPerfil" alt="Foto de perfil" class="profile-pic" />
-      <h2>{{ usuario.nome }}</h2>
-      <p class="bio">{{ usuario.bio }}</p> -->
+      <img [src]="currentPicture" alt="Foto de perfil" class="profile-pic" />
+      <h2>{{ usuarioLogado?.nome }}</h2>
+      <p class="bio">{{ usuarioLogado?.bio }}</p>
     </div>
 
     <!-- Lista de links -->

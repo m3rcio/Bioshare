@@ -15,30 +15,47 @@ import { NgFor } from '@angular/common';
   imports: [NgFor]
 })
 export class PreviewWindowComponent implements OnInit {
-
   
+  
+  currentPicture!: string;
   
   constructor(private socialLinkService:SocialLinkService,
     private userService:UserService,
     private authService:AuthService,public dialog: MatDialog){}
     
+
     ngOnInit(): void {
       this.carregarSocialLinks();
       this.carregarUsuarios();
+        let usuarioLogadoId=this.authService.getUserId();
+this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
+  this.currentPicture = `${res.profile_picture}`; 
+});
     }
     
     users: User[]=[];
     socialLinks: SocialLinks[] = [];
 
-  usuario: User=
-{
-    user_id:'',
-    nome:'',
-    password:'',
-    email: '',
-    profile_picture:'',
-    bio:''
-}
+  
+  usuarioLogado: User = {
+  user_id: '',
+  nome: '',
+  password: '',
+  email: '',
+  profile_picture: '',
+  bio: ''
+};
+
+loadLoggedUserData(){
+    const user_id=this.authService.getUserId()
+    this.userService.getUsersById(user_id).subscribe({
+      next:(user: User)=>{
+        this.usuarioLogado=user;
+      },error:(err)=>{
+        console.error(err);
+      }
+    })
+  }
 
   carregarSocialLinks(){
     let usuarioLogadoId=this.authService.getUserId();
