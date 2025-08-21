@@ -3,9 +3,11 @@
     <div>
       <app-profile-picture></app-profile-picture>
       <div class="userDataDiv">
-        <label style="margin-bottom:0;">{{'@' + usuarioLogado?.nome}}</label><br>
-        <input type="text" placeholder={{usuarioLogado?.bio}} class="bioInput">
-      </div>
+  <label style="margin-bottom:0;font-weight: bold;padding: 0;">{{ '@' + usuarioLogado?.nome }}</label><br>
+
+      <input type="text"
+         [(ngModel)]="usuarioLogado.bio" (ngModelChange)="onBioChange(usuarioLogado)" placeholder={{usuarioLogado?.bio}} class="bioInput">
+        </div>
         <button type="button" class="adicionar-link" (click)="criarSocialLink()">
           Adicionar Link
         </button>

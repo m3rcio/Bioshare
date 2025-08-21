@@ -55,6 +55,8 @@ app-preview-window{
   width: 100px;
   margin-top: 0;
   margin-bottom: 15px;
+  color: #525252;
+  padding: 0;
 }
 
 .userDataDiv{
@@ -63,7 +65,9 @@ app-preview-window{
   justify-content: center;
   justify-items: center;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  width: 200px;
+  margin-left: 50px;
 }
 
 .bioInput:focus{

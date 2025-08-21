@@ -108,9 +108,29 @@ export class DashboardComponent implements OnInit{
     });
   }
 
+
+  onBioChange(usuario: User) {
+  const id = this.authService.getUserId()
+
+  // Limpa o timer anterior se ainda estiver rodando
+  if (this.debounceTimers[id]) {
+    clearTimeout(this.debounceTimers[id]);
+  }
+
+  // Define um novo timer de 3 segundos
+  this.debounceTimers[id] = setTimeout(() => {
+    this.userService.atualizarUser(id, usuario)
+      .subscribe({
+        next: () => console.log('Bio atualizada!'),
+        error: err => console.error('Erro ao salvar bio:', err)
+      });
+  }, 3000);
+}
+
+
   mostrarJanelaExclusao:boolean=false;
   debounceTimers: { [key: string]: any } = {};
-
+// função para atualizar o texto do link depois de 3 segundos
   onFieldChange(socialLink:any) {
     const id=socialLink.socialLink_id;
 
