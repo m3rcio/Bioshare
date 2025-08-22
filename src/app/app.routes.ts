@@ -4,12 +4,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { MyprofileComponent } from './pages/myprofile/myprofile.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { AuthGuard } from '../auth.guard';
+import { PublicPageComponent } from './pages/publicpage/publicPage.component';
+
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
     { path: 'myprofile', component: MyprofileComponent, canActivate: [AuthGuard] },
     { path: 'signup', component: SignupComponent },
+    {path: 'bioshare/:nome', component: PublicPageComponent}
   ];
 
 @NgModule({
