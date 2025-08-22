@@ -62,8 +62,8 @@ app-preview-window{
 .userDataDiv{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-items: center;
+  /* justify-content: center; */
+  /* justify-items: center; */
   align-items: center;
   /* border: 1px solid black; */
   width: 200px;

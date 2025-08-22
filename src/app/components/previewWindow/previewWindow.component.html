@@ -4,8 +4,8 @@
     <!-- Foto de perfil -->
     <div class="profile-section">
       <img [src]="currentPicture" alt="Foto de perfil" class="profile-pic" />
-      <h2>{{ usuarioLogado?.nome }}</h2>
-      <p class="bio">{{ usuarioLogado?.bio }}</p>
+      <h2 style="margin-bottom: 0;padding:0;">{{'@'+ usuarioLogado.nome }}</h2>
+      <p class="bio">{{ usuarioLogado.bio }}</p>
     </div>
 
     <!-- Lista de links -->

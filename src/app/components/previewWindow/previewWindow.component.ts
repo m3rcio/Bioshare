@@ -31,6 +31,8 @@ export class PreviewWindowComponent implements OnInit {
 this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
   this.currentPicture = `${res.profile_picture}`; 
 });
+
+  this.loadLoggedUserData();
     }
     
     users: User[]=[];
