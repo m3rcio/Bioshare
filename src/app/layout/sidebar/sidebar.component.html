@@ -16,7 +16,7 @@
         <ul id="side_items">
             <li class="side-item active">
                 <a href="#">
-                    <i class="fa-solid fa-chart-line"></i>
+                    <i class="fa-solid fa-bars"></i>
                     <span class="item-description">
                         Dashboard
                     </span>
@@ -34,38 +34,19 @@
 
             <li class="side-item">
                 <a href="#">
-                    <i class="fa-solid fa-bell"></i>
-                    <span class="item-description">
-                        Notificações
-                    </span>
-                </a>
-            </li>
-
-            <li class="side-item">
-                <a href="#">
-                    <i class="fa-solid fa-box"></i>
-                    <span class="item-description">
-                        Produtos
-                    </span>
-                </a>
-            </li>
-
-            <li class="side-item">
-                <a href="#">
-                    <i class="fa-solid fa-image"></i>
-                    <span class="item-description">
-                        Imagens
-                    </span>
-                </a>
-            </li>
-
-            <li class="side-item">
-                <a href="#">
                     <i class="fa-solid fa-gear"></i>
                     <span class="item-description">
                         Configurações
                     </span>
                 </a>
+            </li>
+            <li class="side-item">
+                    <a routerLink="/login" (click)="sair()">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                         <span class="item-description">
+                Logout
+            </span>
+                    </a>
             </li>
         </ul>
 
@@ -74,13 +55,5 @@
         </button>
     </div>
 
-    <div id="logout">
-        <button id="logout_btn" routerLink="/login" (click)="sair()">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span class="item-description">
-                Logout
-            </span>
-        </button>
-    </div>
 </nav>
 <script src="./sidebar.js"></script>

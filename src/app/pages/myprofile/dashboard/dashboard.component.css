@@ -29,7 +29,7 @@ app-preview-window{
 }
 
 .adicionar-link{
-  background-color: rgb(241, 55, 241);
+  background-color: rgb(43, 89, 241);
   color: white;
   border: none;
   border-radius: 10px;
@@ -39,7 +39,7 @@ app-preview-window{
 }
 
 .adicionar-link:hover{
-  background-color: rgb(243, 37, 116);
+    background-color: rgb(12, 53, 189);
 }
 
 .socialLinkDiv{
