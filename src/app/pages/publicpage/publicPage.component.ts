@@ -4,10 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
+import { NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
+import { SocialLinkService } from '../../services/socialLink.service';
+import { SocialLinks } from '../../models/sociallinks.model';
 @Component({
     
   selector: 'app-publicpage',
-  imports: [RouterModule],
+  imports: [RouterModule,NgIf,NgFor],
   templateUrl: './publicPage.component.html',
   styleUrl: './publicPage.component.css',
   providers: [RouterLink ]
@@ -16,7 +20,7 @@ export class PublicPageComponent {
   
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,private socialLinkService: SocialLinkService
   ) {}
   
   user: User = {
@@ -29,8 +33,10 @@ export class PublicPageComponent {
   };
 
   nome!:string;
-
+  socialLinks: SocialLinks[] = [];
+  
     ngOnInit(): void {
+      this.carregarSocialLinks();
     this.nome = this.route.snapshot.paramMap.get('nome') || '';
 
     if (this.nome.startsWith('@')) {
@@ -38,6 +44,15 @@ export class PublicPageComponent {
     }
 
     this.loadUserData(this.nome);
+  }
+
+   carregarSocialLinks(){
+    this.socialLinkService.getSocialLinksByUserNome(this.nome).subscribe({ next: (res) => {
+         this.socialLinks = res.filter((link) => link.isActive);
+       },error: (err) => {
+         console.error('Erro ao carregar links sociais:', err);
+       }
+    });
   }
 
   loadUserData(nome: string) {

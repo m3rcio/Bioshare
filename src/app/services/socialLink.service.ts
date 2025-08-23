@@ -52,4 +52,9 @@ import { AuthService } from "../../auth.service";
       const apiUrl = `${this.apiBaseUrl}/social-links/user/${user_id}`;
       return this.http.get<SocialLinks[]>(apiUrl);
     }
+    
+    getSocialLinksByUserNome(nome:string): Observable<SocialLinks[]>{
+      const apiUrl = `${this.apiBaseUrl}/social-links/user/${nome}`;
+      return this.http.get<SocialLinks[]>(apiUrl);
+    }
   }
