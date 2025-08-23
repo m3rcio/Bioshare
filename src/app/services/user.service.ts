@@ -45,4 +45,9 @@ import {User} from "../models/user.model";
         getProfilePicture(user_id: string) {
           return this.http.get<{ profile_picture: string }>(`${this.apiBaseUrl}/user/${user_id}/profile-picture`);
         }
+
+        getUserByNome(nome:string){
+          const apiUrl = `${this.apiBaseUrl}/user/${nome}`;
+          return this.http.get<User>(apiUrl);
+        }
   }
