@@ -93,4 +93,19 @@ const getUsersById = async (req, res) => {
     }
 };
 
-module.exports = {  getAllUsers, deleteUser,updateUser,getUsersById, updateProfilePicture,getProfilePicture };
+const getUserByNome = async (req,res)=>{
+  try{
+    const {nome} = req.params;
+    const user = await User.findOne({ nome: { $regex: new RegExp("^" + nome + "$", "i") } });
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
+    }
+
+    return res.json(user);
+  }catch (error){
+    return res.status(500).json({ message: "Erro no servidor", error });
+  }
+}
+
+module.exports = {  getAllUsers, deleteUser,updateUser,getUsersById, updateProfilePicture,getProfilePicture,getUserByNome };

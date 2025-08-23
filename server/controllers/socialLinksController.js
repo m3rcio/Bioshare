@@ -59,6 +59,40 @@ const getSocialLinksByUser = async (req, res) => {
     }
 };
 
+const getSocialLinksByUserNome = async (req, res) => {
+    try {
+        const { nome } = req.params;
+
+        // Buscar o usuário pelo nome
+        const user = await user_Schema.findOne({ nome: nome });
+        if (!user) {
+            return res.status(404).json({ message: "Usuário não encontrado" });
+        }
+
+        // Buscar os links sociais do usuário encontrado
+        const socialLinks = await socialLinks_Schema.find({ user_id: user._id });
+
+        if (!socialLinks.length) {
+            return res.status(404).json({ message: "Social link não encontrado para este usuário" });
+        }
+
+        const linksMapeados = socialLinks.map(link => ({
+            socialLink_id: link._id.toString(),
+            title: link.title,
+            Url: link.Url,
+            isActive: link.isActive,
+            icon: link.icon,
+            user_id: link.user_id,
+            icon_color: link.icon_color
+        }));
+
+        return res.json(linksMapeados);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+};
+
 const updateSocialLink = async (req, res) => {
     try {
         const { socialLink_id } = req.params;
@@ -133,4 +167,4 @@ const deleteSocialLink = async (req, res) => {
     }
 };
 
-module.exports = { createSocialLink, getAllSocialLinks, getSocialLinksByUser, updateSocialLink, deleteSocialLink,updateSocialLinkIsActive,updateSocialLinkIconAndColor };
+module.exports = { createSocialLink, getAllSocialLinks, getSocialLinksByUser, updateSocialLink, deleteSocialLink,updateSocialLinkIsActive,updateSocialLinkIconAndColor,getSocialLinksByUserNome };

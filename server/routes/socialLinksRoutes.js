@@ -1,6 +1,6 @@
 const express=require('express');
 const { 
-    createSocialLink, getAllSocialLinks, getSocialLinksByUser, updateSocialLink,  deleteSocialLink,updateSocialLinkIsActive,updateSocialLinkIconAndColor
+    createSocialLink, getAllSocialLinks, getSocialLinksByUser, updateSocialLink,  deleteSocialLink,updateSocialLinkIsActive,updateSocialLinkIconAndColor,getSocialLinksByUserNome
 } = require("../controllers/socialLinksController");
 const router = express.Router();
 
@@ -10,6 +10,7 @@ router.get("/social-links/user/:user_id", getSocialLinksByUser);
 router.put("/social-links/:socialLink_id", updateSocialLink);
 router.patch("/social-links/:socialLink_id/toggle", updateSocialLinkIsActive);
 router.patch("/social-links/:socialLink_id/icon", updateSocialLinkIconAndColor);
+router.get("/social-links/user/:nome", getSocialLinksByUserNome)
 router.delete("/social-links/:socialLink_id", deleteSocialLink);
 
 module.exports = router;
