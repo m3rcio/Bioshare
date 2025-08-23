@@ -70,7 +70,7 @@ const getSocialLinksByUserNome = async (req, res) => {
         }
 
         // Buscar os links sociais do usuário encontrado
-        const socialLinks = await socialLinks_Schema.find({ user_id: user._id });
+        const socialLinks = await socialLinks_Schema.find({ user_id: user.user_id });
 
         if (!socialLinks.length) {
             return res.status(404).json({ message: "Social link não encontrado para este usuário" });
