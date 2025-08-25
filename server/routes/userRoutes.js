@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.put("/user/:user_id/profile-picture", upload.single("profile_picture"), updateProfilePicture);
 router.get("/user/:user_id/profile-picture", getProfilePicture);
-router.get("/user/:nome", getUserByNome);
+router.get("/user/nome/:nome", getUserByNome);
 router.get("/users", getAllUsers);
 router.get("/user/:user_id", getUsersById);
 router.put("/user/:user_id", updateUser);

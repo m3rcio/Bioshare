@@ -42,7 +42,7 @@ app.post("/api/signup",async (req,res)=>{
         const saltRounds= 10;
         data.password= await bcrypt.hash(data.password, saltRounds);
 
-        await User.insertMany(data);
+         await User.create(data);
       
         return res.status(201).json({message: 'Usuário criado com sucesso!'});
   
