@@ -31,8 +31,8 @@ import {User} from "../models/user.model";
           return this.http.get<User[]>(apiUrl);
         }
       
-        getUsersById(idUsers: string): Observable<User> {
-          const apiUrl = `${this.apiBaseUrl}/user/${idUsers}`;
+        getUsersById(user_id: string): Observable<User> {
+          const apiUrl = `${this.apiBaseUrl}/user/${user_id}`;
           return this.http.get<User>(apiUrl);
         }
 
@@ -47,7 +47,7 @@ import {User} from "../models/user.model";
         }
 
         getUserByNome(nome:string){
-          const apiUrl = `${this.apiBaseUrl}/user/${nome}`;
+          const apiUrl = `${this.apiBaseUrl}/user/nome/${nome}`;
           return this.http.get<User>(apiUrl);
         }
   }

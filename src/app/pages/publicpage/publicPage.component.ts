@@ -36,33 +36,50 @@ export class PublicPageComponent {
   socialLinks: SocialLinks[] = [];
   
     ngOnInit(): void {
-      this.carregarSocialLinks();
-    this.nome = this.route.snapshot.paramMap.get('nome') || '';
-
+      
+  this.route.paramMap.subscribe(params => {
+    this.nome = params.get('nome') || '';
     if (this.nome.startsWith('@')) {
-      this.nome = this.nome.substring(1); // tira o @
+      this.nome = this.nome.substring(1);
     }
 
-    this.loadUserData(this.nome);
-  }
+     if (!this.nome) return; 
 
-   carregarSocialLinks(){
-    this.socialLinkService.getSocialLinksByUserNome(this.nome).subscribe({ next: (res) => {
-         this.socialLinks = res.filter((link) => link.isActive);
-       },error: (err) => {
-         console.error('Erro ao carregar links sociais:', err);
-       }
-    });
+  this.userService.getUserByNome(this.nome).subscribe({
+  next: (links) => {this.user=links
+    // console.log('Links sociais recebidos:', links);
+    // this.socialLinks = links.filter(link => link.isActive);
+  },
+  error: (err) => {
+    console.error('Erro ao carregar links sociais:', err);
   }
+});
+  });
+}
 
-  loadUserData(nome: string) {
-    this.userService.getUserByNome(nome).subscribe({
-      next: (res) => {
-        this.user = res;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar usuário:', err);
-      }
-    });
-  }
+//    carregarSocialLinks() {
+//   if (!this.nome) return; 
+
+//   this.socialLinkService.getSocialLinksByUserNome(this.nome).subscribe({
+//     next: (res) => {
+//       this.socialLinks = res.filter((link) => link.isActive);
+//     },
+//     error: (err) => {
+//       console.error('Erro ao carregar links sociais:', err);
+//     }
+//   });
+// }
+
+//   loadUserData(nome: string) {
+//   if (!nome) return; 
+
+//   this.userService.getUserByNome(nome).subscribe({
+//     next: (res) => {
+//       this.user = res;
+//     },
+//     error: (err) => {
+//       console.error('Erro ao carregar usuário:', err);
+//     }
+//   });
+// }
 }

@@ -30,9 +30,8 @@ export class DashboardComponent implements OnInit{
     private authService:AuthService,public dialog: MatDialog){}
 
   ngOnInit(): void {
+    this.loadLoggedUserData();
     this.carregarSocialLinks();
-    this.carregarUsuarios();
-    this.loadLoggedUserData()
   }
 
 
@@ -161,13 +160,13 @@ export class DashboardComponent implements OnInit{
     })
   }
 
-  carregarUsuarios(){
-    this.userService.getUsers().subscribe((value)=>{
-      this.users=value;
-    },(error)=>{
-      console.log('Erro ao carregar os Links: '+error)
-    })
-  }
+  // carregarUsuarios(){
+  //   this.userService.getUsers().subscribe((value)=>{
+  //     this.users=value;
+  //   },(error)=>{
+  //     console.log('Erro ao carregar os Links: '+error)
+  //   })
+  // }
 
   copiarLink(url:string | null){
     if(!url){
