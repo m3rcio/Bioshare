@@ -39,10 +39,11 @@ const socialLinkSchema = new mongoose.Schema({
      type: String,
     default: '#1b1a1aff'
    },
-  user_id: {
-    type: String,
-    required: true,
-  },
+   user_id: {                   
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  }
 });
 
 const SocialLink = mongoose.model("SocialLink", socialLinkSchema);

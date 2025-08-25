@@ -1,10 +1,12 @@
 const socialLinks_Schema = require("../socialLink.js");
+const user_Schema= require("../user.js");
+const mongoose=require("mongoose");
 
 const createSocialLink = async (req, res) => {
     try {
-        const { title, Url, isActive, icon, user_id,icon_color } = req.body;
-
-        const newSocialLink = new socialLinks_Schema({ title, Url, isActive, icon, user_id:req.params.user_id,icon_color });
+        const { title, Url, isActive, icon, icon_color,user_id } = req.body;
+        
+        const newSocialLink = new socialLinks_Schema({ title, Url, isActive, icon, user_id,icon_color });
         await newSocialLink.save();
 
         res.status(201).json({ message: "Social link criado com sucesso!", socialLink: newSocialLink });
@@ -64,16 +66,16 @@ const getSocialLinksByUserNome = async (req, res) => {
         const { nome } = req.params;
 
         // Buscar o usuário pelo nome
-        const user = await user_Schema.findOne({ nome: nome });
+        const user = await user_Schema.findOne({ nome: nome});
         if (!user) {
             return res.status(404).json({ message: "Usuário não encontrado" });
         }
 
         // Buscar os links sociais do usuário encontrado
-        const socialLinks = await socialLinks_Schema.find({ user_id: user.user_id });
+        const socialLinks = await socialLinks_Schema.find({ user_id: user._id });
 
         if (!socialLinks.length) {
-            return res.status(404).json({ message: "Social link não encontrado para este usuário" });
+            return res.status(404).json({ message: "Social link não encontrado para este usuário "+user.nome });
         }
 
         const linksMapeados = socialLinks.map(link => ({
