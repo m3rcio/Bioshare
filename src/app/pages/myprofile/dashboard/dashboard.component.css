@@ -53,6 +53,30 @@ app-preview-window{
   border: 2px solid rgb(206, 206, 206);
 }
 
+@media screen and (max-width: 768px) {
+  .socialLinkDiv {
+    display: none !important;
+  }
+
+  app-preview-window{
+    display: none !important;
+  }
+
+  .mobile-warning {
+    display: block;
+  }
+}
+
+.mobile-warning {
+  display: none;
+  padding: 15px;
+  background-color: #ffecb3;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid #fbc02d;
+}
+
 .bioInput{
   border:none;
   background-color: transparent;
