@@ -194,7 +194,7 @@ trocarEstadoLink(id:string | undefined, novoValor: boolean) {
   
   this.socialLinkService.atualizarSocialLinkisActive(id,novoValor )
   .subscribe({
-      next: () => console.log("valor do link é: "+novoValor),
+      next: () => this.carregarSocialLinks(),
       error: err => console.error('Erro ao salvar:', err)
     });
 }
