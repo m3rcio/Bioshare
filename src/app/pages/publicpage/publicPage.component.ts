@@ -24,7 +24,7 @@ export class PublicPageComponent {
   ) {}
   
   user: User = {
-    user_id: '',
+    _id: '',
     nome: '',
     password: '',
     email: '',
@@ -34,7 +34,7 @@ export class PublicPageComponent {
 
   nome!:string;
   socialLinks: SocialLinks[] = [];
-  
+  userDaRotaId:string='';
     ngOnInit(): void {
       
   this.route.paramMap.subscribe(params => {
@@ -46,8 +46,9 @@ export class PublicPageComponent {
      if (!this.nome) return; 
 
   this.userService.getUserByNome(this.nome).subscribe({
-  next: (links) => {this.user=links
-    // console.log('Links sociais recebidos:', links);
+  next: (user) => {this.user=user
+    this.userDaRotaId=user._id
+    this.carregarSocialLinks();
     // this.socialLinks = links.filter(link => link.isActive);
   },
   error: (err) => {
@@ -55,20 +56,20 @@ export class PublicPageComponent {
   }
 });
   });
+  
 }
 
-//    carregarSocialLinks() {
-//   if (!this.nome) return; 
-
-//   this.socialLinkService.getSocialLinksByUserNome(this.nome).subscribe({
-//     next: (res) => {
-//       this.socialLinks = res.filter((link) => link.isActive);
-//     },
-//     error: (err) => {
-//       console.error('Erro ao carregar links sociais:', err);
-//     }
-//   });
-// }
+   carregarSocialLinks() {
+    if (!this.userDaRotaId) return;
+  this.socialLinkService.getSocialLinksByUserId(this.userDaRotaId).subscribe({
+    next: (res) => {
+      this.socialLinks = res.filter((link) => link.isActive);
+    },
+    error: (err) => {
+      console.error('Erro ao carregar links sociais:', err);
+    }
+  });
+}
 
 //   loadUserData(nome: string) {
 //   if (!nome) return; 

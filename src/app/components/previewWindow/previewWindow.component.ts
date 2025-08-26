@@ -40,7 +40,7 @@ this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
 
   
   usuarioLogado: User = {
-  user_id: '',
+  _id: '',
   nome: '',
   password: '',
   email: '',
@@ -64,7 +64,8 @@ loadLoggedUserData(){
     this.socialLinkService.getSocialLinksByUserId(usuarioLogadoId).subscribe({ next: (res) => {
          this.socialLinks = res.filter(link => link.isActive);
        },error: (err) => {
-         console.error('Erro ao carregar links sociais:', err);
+         const msg = err.error?.message || 'Erro ao carregar links sociais.';
+         console.log(msg);
        }
     });
   }
