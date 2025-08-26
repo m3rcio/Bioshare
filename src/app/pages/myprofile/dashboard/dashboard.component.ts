@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit{
     user_id: '',
     icon_color:'#1b1a1aff'
   };
-
+  publicUrlIsavailable=this.socialLinks && this.socialLinks.length > 0 && this.socialLinks.some(link => link.isActive)
 
   loadLoggedUserData(){
     const user_id=this.authService.getUserId()

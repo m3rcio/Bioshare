@@ -148,6 +148,24 @@ app-preview-window{
   margin-top: 20px;
 }
 
+.perfil-publico-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* fica acima de tudo */
+  
+  border-bottom: 2px solid #2196f3; /* azul */
+  background-color: #e3f2fd; /* azul clarinho */
+  color: #0d47a1; /* azul escuro */
+  
+  padding: 12px;
+  text-align: center;
+  font-weight: 500;
+  
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); 
+}
+
 .row{
   /* border: 1px solid black; */
   display:flex;
