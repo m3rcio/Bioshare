@@ -8,10 +8,11 @@ import { NgIf } from '@angular/common';
 import { NgFor } from '@angular/common';
 import { SocialLinkService } from '../../services/socialLink.service';
 import { SocialLinks } from '../../models/sociallinks.model';
+import { AuthService } from '../../../auth.service';
 @Component({
     
   selector: 'app-publicpage',
-  imports: [RouterModule,NgIf,NgFor],
+  imports: [RouterModule,NgFor],
   templateUrl: './publicPage.component.html',
   styleUrl: './publicPage.component.css',
   providers: [RouterLink ]
@@ -20,7 +21,7 @@ export class PublicPageComponent {
   
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,private socialLinkService: SocialLinkService
+    private userService: UserService,private socialLinkService: SocialLinkService,private authService:AuthService
   ) {}
   
   user: User = {
@@ -31,7 +32,7 @@ export class PublicPageComponent {
     profile_picture: '',
     bio: ''
   };
-
+  currentPicture!: string;
   nome!:string;
   socialLinks: SocialLinks[] = [];
   userDaRotaId:string='';
@@ -49,14 +50,20 @@ export class PublicPageComponent {
   next: (user) => {this.user=user
     this.userDaRotaId=user._id
     this.carregarSocialLinks();
-    // this.socialLinks = links.filter(link => link.isActive);
   },
   error: (err) => {
     console.error('Erro ao carregar links sociais:', err);
   }
 });
   });
-  
+  let usuarioLogadoId=this.authService.getUserId();
+  if (!usuarioLogadoId) {
+  console.error("UserId está vazio, não posso buscar a foto de perfil!");
+  return;
+}
+this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
+  this.currentPicture = `${res.profile_picture}`; 
+});
 }
 
    carregarSocialLinks() {
@@ -71,16 +78,7 @@ export class PublicPageComponent {
   });
 }
 
-//   loadUserData(nome: string) {
-//   if (!nome) return; 
-
-//   this.userService.getUserByNome(nome).subscribe({
-//     next: (res) => {
-//       this.user = res;
-//     },
-//     error: (err) => {
-//       console.error('Erro ao carregar usuário:', err);
-//     }
-//   });
-// }
+abrirLink(url: string): void {
+    window.open(`https://${url}`, '_blank');
+  }
 }

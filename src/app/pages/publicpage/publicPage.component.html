@@ -1,18 +1,22 @@
-<div *ngIf="user; else loading" class="p-6">
-  <h1 class="text-2xl font-bold">{{ '@'+ user.nome }}</h1>
-  <p class="text-gray-600">{{ user.bio }}</p>
+<br><br><br>
+<!-- Foto de perfil -->
+    <div class="profile-section">
+      <img [src]="currentPicture" alt="Foto de perfil" class="profile-pic" />
+      <h2 style="margin-bottom: 0;padding:0;">{{'@'+ user.nome }}</h2>
+      <p class="bio">{{ user.bio }}</p>
+    </div>
 
-  <div class="mt-4">
-    <h2 class="font-semibold">Links:</h2>
-    <ul>
-      <li *ngFor="let link of socialLinks">
-        <a [href]="link.Url" target="_blank" class="text-blue-600 underline">
-          {{ link.title }}
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+    <!-- Lista de links -->
+    <div class="links-section">
+      <div 
+        class="link-item"
+        *ngFor="let link of socialLinks"
+        (click)="abrirLink(link.Url)"
+      >
+        <i [class]="link.icon" [style.color]="link.icon_color"></i>
+        <span>{{ link.title }}</span>
+      </div>
+    </div>
 
 <ng-template #loading>
   <p>Carregando perfil...</p>
