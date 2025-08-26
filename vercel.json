@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {
+      "src": "/bioshare/(.*)",
+      "dest": "/bioshare/[nome]",
+      "methods": ["GET"],
+      "renderMode": "server"
+    }
+  ]
+}
