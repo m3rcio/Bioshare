@@ -2,12 +2,12 @@
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
     <div>
       <div 
-  *ngIf="!publicUrlIsavailable" 
+  *ngIf="publicUrlIsavailable" 
   class="perfil-publico-banner"
 >
   🚀 O seu perfil público já está disponível em: 
   <a href="http://localhost:4200/bioshare/{{ usuarioLogado?.nome }}" target="_blank"><strong>http://localhost:4200/bioshare/{{ usuarioLogado?.nome }}</strong></a>
-</div>
+</div><br><br><br>
       <app-profile-picture></app-profile-picture>
       <div class="userDataDiv">
   <label style="margin-bottom:0;font-weight: bold;padding: 0;">{{ '@' + usuarioLogado?.nome }}</label><br>

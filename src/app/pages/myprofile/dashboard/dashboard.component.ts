@@ -66,6 +66,7 @@ export class DashboardComponent implements OnInit{
   socialLinks: SocialLinks[]=[];
   users: User[]=[];
   usuarioLogado: any;
+  publicUrlIsavailable!:boolean
   socialLink: SocialLinks = {
     title: ' ',
     Url: ' ',
@@ -74,7 +75,7 @@ export class DashboardComponent implements OnInit{
     user_id: '',
     icon_color:'#1b1a1aff'
   };
-  publicUrlIsavailable=this.socialLinks && this.socialLinks.length > 0 && this.socialLinks.some(link => link.isActive)
+  
 
   loadLoggedUserData(){
     const user_id=this.authService.getUserId()
@@ -155,18 +156,11 @@ export class DashboardComponent implements OnInit{
     let usuarioLogadoId=this.authService.getUserId();
     this.socialLinkService.getSocialLinksByUserId(usuarioLogadoId).subscribe((value)=>{
       this.socialLinks=value;
+      this.publicUrlIsavailable=this.socialLinks.some(link => link.isActive)
     },(error)=>{
       console.log('Erro ao carregar os Links: '+error)
     })
   }
-
-  // carregarUsuarios(){
-  //   this.userService.getUsers().subscribe((value)=>{
-  //     this.users=value;
-  //   },(error)=>{
-  //     console.log('Erro ao carregar os Links: '+error)
-  //   })
-  // }
 
   copiarLink(url:string | null){
     if(!url){
