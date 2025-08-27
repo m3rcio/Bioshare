@@ -12,7 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class AuthService implements OnInit{
 
   private isBrowser!: boolean;
-private apiUrl='http://localhost:3000/api';
+private apiUrl='https://bioshare-medo.onrender.com/api';
   timeoutId:any=null;
    http= inject(HttpClient)
    router=inject(Router);

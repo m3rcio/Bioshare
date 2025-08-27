@@ -8,7 +8,7 @@ import { AuthService } from "../../auth.service";
     providedIn: 'root'
   })
   export class SocialLinkService {
-    private apiBaseUrl = 'http://localhost:3000/api';
+    private apiBaseUrl = 'https://bioshare-medo.onrender.com/api';
   
     constructor(private http: HttpClient, private authService: AuthService) { }
   

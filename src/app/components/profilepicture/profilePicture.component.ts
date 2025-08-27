@@ -65,7 +65,7 @@ this.userService.getProfilePicture(usuarioLogadoId).subscribe(res => {
 
   this.userService.uploadProfilePicture(usuarioLogadoId, this.selectedFile)
     .subscribe(res => {
-      this.currentPicture = `http://localhost:3000${res.profile_picture}`;
+      this.currentPicture = `https://bioshare-medo.onrender.com${res.profile_picture}`;
       this.previewUrl = null;
       this.selectedFile = null;
 

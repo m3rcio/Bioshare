@@ -35,7 +35,7 @@ constructor(){
 
 onSubmit() {
   const formData= this.reqData();
-  this.http.post('http://localhost:3000/api/signup', formData)
+  this.http.post('http://bioshare-tau.vercel.com/api/signup', formData)
     .subscribe(res => {
       console.log('Signup successful', res);
       this.router.navigate(['/myprofile']);

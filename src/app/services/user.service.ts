@@ -7,7 +7,7 @@ import {User} from "../models/user.model";
     providedIn: 'root'
   })
   export class UserService {
-    private apiBaseUrl = 'http://localhost:3000/api';
+    private apiBaseUrl = 'https://bioshare-medo.onrender.com/api';
   
     constructor(private http: HttpClient) { }
 
