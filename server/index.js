@@ -9,7 +9,6 @@ const jwt=require('jsonwebtoken');
 const authMiddleware= require('./middleware/auth.js');
 const SocialLinksRoutes=require('./routes/socialLinksRoutes');
 app.use(cors());
-// app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(cors({ origin: 'https://bioshare-tau.vercel.app' }));
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
