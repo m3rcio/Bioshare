@@ -5,6 +5,12 @@ Aplicação Web Full Stack para centralizar todos os perfis sociais do usuário 
 
 👉 **Live Demo:** [Bioshare](https://bioshare-tau.vercel.app/)
 
+
+
+https://github.com/user-attachments/assets/e4c806a3-2b7a-4d39-825c-89867eb14c1e
+
+
+
 ---
 
 ## 🚀 Tecnologias Utilizadas
